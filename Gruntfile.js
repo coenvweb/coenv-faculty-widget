@@ -24,8 +24,8 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'<%= paths.dev %>/assets/scripts/build/main.min.js': [
-						'<%= paths.dev %>/assets/scripts/src/main.js'
+					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
+						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget.js'
 					]
 				}
 			}
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 					javascriptsDir: '<%= paths.dev %>/assets/scripts/build',
 					fontsDir: '<%= paths.dev %>/assets/fonts',
 					importPath: 'components',
-					outputStyle: 'compressed',
+					outputStyle: 'expanded',
 					relativeAssets: true
 				}
 			}

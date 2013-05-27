@@ -5,7 +5,8 @@
   "dependencies": {
     "jquery": "~1.9.1",
     "modernizr": "~2.6.2",
-    "normalize": "https://raw.github.com/elcontraption/normalize.css/master/normalize.scss"
+    "normalize": "https://raw.github.com/elcontraption/normalize.css/master/normalize.scss",
+    "jquery-bridget": "~1.0.0"
   },
   "devDependencies": {}
 }
