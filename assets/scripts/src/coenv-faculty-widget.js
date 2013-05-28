@@ -115,7 +115,10 @@ jQuery(function ($) {
 					$img = $('<img />'),
 					$name = $('<p></p>');
 
+			console.log( member );
+
 			$item.addClass( _this.options.memberClass );
+			$item.attr( 'style', 'background-color: ' + member.units[0].color + ';' );
 
 			$link.addClass( _this.options.memberInnerClass );
 			$link.attr( 'href', member.permalink );
@@ -125,7 +128,7 @@ jQuery(function ($) {
 			$img.appendTo( $link );
 
 			$name.addClass( _this.options.memberNameClass );
-			$name.text( member.FULL_NAME );
+			$name.text( member.full_name );
 			$name.appendTo( $link );
 
 			$link.appendTo( $item );

@@ -47,7 +47,6 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 				<div class="coenv-fw-section coenv-fw-feedback">
 					<p class="coenv-fw-feedback-loading">Loading...</p>
-					<!--<p><span class="coenv-fw-feedback-number">14</span> faculty working on <a href="#">Climate</a> in <a href="#">Earth &amp; Space Sciences</a></p>-->
 				</div>
 
 				<ul class="coenv-fw-section coenv-fw-results"></ul>

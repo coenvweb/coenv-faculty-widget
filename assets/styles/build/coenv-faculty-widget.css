@@ -142,16 +142,33 @@
   padding-top: 20%;
   width: 20%;
 }
-/* line 158, ../src/coenv-faculty-widget.scss */
-.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-span-5 {
+/* line 160, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-1 {
+  width: 20%;
+}
+/* line 164, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-2 {
+  width: 40%;
+}
+/* line 168, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-3 {
+  width: 60%;
+}
+/* line 172, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-4 {
+  width: 80%;
+}
+/* line 176, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-5 {
   width: 100%;
 }
-/* line 162, ../src/coenv-faculty-widget.scss */
+/* line 182, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+  width: 100%;
   -webkit-transition: all 0.1s ease;
   -moz-transition: all 0.1s ease;
   -o-transition: all 0.1s ease;
@@ -162,11 +179,41 @@
   vertical-align: middle;
   text-align: center;
 }
-/* line 174, ../src/coenv-faculty-widget.scss */
+/* line 195, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-image {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 100% !important;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
+}
+/* line 203, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-name {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 15px;
+  font-weight: 600;
+  background: inherit;
+  text-align: left;
+}
+/* line 218, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover {
+  z-index: 100;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+}
+/* line 224, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover .coenv-fw-member-name {
+  display: block;
 }
