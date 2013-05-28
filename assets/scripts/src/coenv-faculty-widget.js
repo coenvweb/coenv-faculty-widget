@@ -17,7 +17,7 @@ jQuery(function ($) {
 	};
 
 	$.CoEnvFw.settings = {
-		url: 'http://coenv.dev/faculty/json',
+		endpoint: 'http://coenv.dev/faculty/json',
 		widgetClass: 'coenv-fw',
 		sectionClass: 'coenv-fw-section',
 		feedbackClass: 'coenv-fw-feedback',
@@ -59,7 +59,7 @@ jQuery(function ($) {
 		var _this = this;
 
 		$.ajax({
-			url: _this.options.url,
+			url: _this.options.endpoint,
 			dataType: 'jsonp',
 			success: function ( data, textStatus ) {
 				_this.members = data;
