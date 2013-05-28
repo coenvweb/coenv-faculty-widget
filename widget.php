@@ -34,7 +34,8 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		extract( $args );
 
 		?>
-			<?php echo $before_widget ?>
+			<?php //echo $before_widget ?>
+			<div class="coenv-fw">
 
 				<header class="coenv-fw-section coenv-fw-header">
 					<h1>
@@ -51,7 +52,9 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 				<ul class="coenv-fw-section coenv-fw-results"></ul>
 
-			<?php echo $after_widget ?>
+			</div>
+
+			<?php// echo $after_widget ?>
 		<?php
 	}
 
