@@ -27,12 +27,44 @@ class CoEnvFacultyWidget {
 		// Plugin noncename (for form submission)
 		if ( !defined('COENVFW_NONCENAME') ) define( 'COENVFW_NONCENAME', 'coenvfw' );
 
+		$this->faculty_endpoint = 'http://coenv.dev/faculty/json';
+		$this->units_endpoint = 'http://coenv.dev/faculty/units/json';
+		$this->themes_endpoint = 'http://coenv.dev/faculty/themes/json';
+
+		// Initialize plugin
+		$this->init();
+	}
+
+	/**
+	 * Plugin initilization
+	 *
+	 * @return void
+	 */
+	function init() {
+
 		// Plugin activate/deactivation
 		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate_plugin' ) );
 
-		// Initialize plugin
-		$this->init();
+		// enqueue scripts and styles
+		add_action( 'wp_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
+
+		// register widget
+		add_action( 'widgets_init', array( $this, 'register_widget' ) );
+
+		// enqueue admin scripts and styles
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_and_styles' ) );
+
+		// ajax get/save faculty member actions
+		add_action( 'wp_ajax_coenv_faculty_widget_get_members', array( $this, 'ajax_get_members' ) );
+		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_get_members', array( $this, 'ajax_get_members' ) );
+		add_action( 'wp_ajax_coenv_faculty_widget_save_members', array( $this, 'ajax_save_members' ) );
+		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_save_members', array( $this, 'ajax_save_members' ) );
+
+		// ajax get/save units actions
+		add_action( 'wp_ajax_coenv_faculty_widget_get_units', array( $this, 'ajax_get_units' ) );
+		add_action( 'wp_ajax_coenv_faculty_widget_save_units', array( $this, 'ajax_save_units' ) );
+
 	}
 
 	/**
@@ -52,21 +84,9 @@ class CoEnvFacultyWidget {
 	}
 
 	/**
-	 * Plugin initilization
+	 * Enqueue scripts and styles
 	 *
 	 * @return void
-	 */
-	function init() {
-
-		// enqueue scripts and styles
-		add_action( 'wp_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
-
-		// register widget
-		add_action( 'widgets_init', array( $this, 'register_widget' ) );
-	}
-
-	/**
-	 * Enqueue scripts and styles
 	 */
 	function scripts_and_styles() {
 		
@@ -79,14 +99,109 @@ class CoEnvFacultyWidget {
 		wp_enqueue_script( 'coenv-faculty-widget' );
 
 		// set up plugin js vars
-		wp_localize_script( 'coenv-faculty-widget', 'coenvfw', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		wp_localize_script( 'coenv-faculty-widget', 'coenvfw', $this->js_vars() );
+	}
+
+	/**
+	 * Plugin JS vars
+	 */
+	function js_vars() {
+		return array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'facultyEndpoint' => $this->faculty_endpoint,
+			'unitsEndpoint' => $this->units_endpoint,
+			'themesEndpoint' => $this->themes_endpoint
+		);
+	}
+
+	/**
+	 * Enqueue admin scripts and styles
+	 *
+	 * @return void
+	 */
+	function admin_scripts_and_styles() {
+		
+		// styles
+
+		// scripts
+		wp_register_script( 'coenv-faculty-widget-admin', COENVFW_DIRNAME . '/assets/scripts/build/coenv-faculty-widget-admin.js', array( 'jquery' ) );
+		wp_enqueue_script( 'coenv-faculty-widget-admin' );
+
+		wp_localize_script( 'coenv-faculty-widget-admin', 'coenvfw', $this->js_vars() );
 	}
 
 	/**
 	 * Register widget
+	 *
+	 * @return void
 	 */
 	function register_widget() {
 		register_widget( 'CoEnv_Widget_Faculty' );
+	}
+
+	/**
+	 * Attempts to get faculty members from transient
+	 */
+	function ajax_get_members() {
+
+		//delete_transient( 'coenv_faculty_widget_members' );
+
+		$members = get_transient( 'coenv_faculty_widget_members' );
+		echo json_encode( $members );
+		die();
+	}
+
+	/**
+	 * Save faculty members from ajax call
+	 */
+	function ajax_save_members() {
+		$members = $_POST['members'];
+
+		$count = 1;
+		foreach ( $members as $member ) {
+			echo $count . ': ' . $member['full_name'] . "\n";
+			$count++;
+		}
+
+		//echo count($members);
+		die();
+
+		if ( !isset( $members ) || empty( $members ) ) {
+			return false;
+		}
+
+		// save transient (1 hour expiration)
+		set_transient( 'coenv_faculty_widget_members', $members, 60 * 60 * 1 );
+
+		echo json_encode( get_transient( 'coenv_faculty_widget_members' ) );
+		die();
+	}
+
+	/**
+	 * Attempts to get units from transient
+	 */
+	function ajax_get_units() {
+		$units = get_transient( 'coenv_faculty_widget_units' );
+		echo json_encode( $units );
+		die();
+	}
+
+	/**
+	 * Save units from ajax call
+	 */
+	function ajax_save_units() {
+
+		$units = $_POST['data'];
+
+		if ( !isset( $units ) || empty( $units ) ) {
+			return false;
+		}
+
+		// save transient (1 hour expiration)
+		set_transient( 'coenv_faculty_widget_units', $units, 60 * 60 * 1 );
+
+		echo json_encode( get_transient('coenv_faculty_widget_units') );
+		die();
 	}
 
 }

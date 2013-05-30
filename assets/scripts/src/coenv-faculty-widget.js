@@ -2,8 +2,7 @@ jQuery(function ($) {
 	'use strict';
 
 	// Initialize CoEnv Faculty Widget
-	$('.coenv-fw').coenvfw({
-	});
+	$('.coenv-fw').coenvfw({});
 
 });
 
@@ -17,7 +16,10 @@ jQuery(function ($) {
 	};
 
 	$.CoEnvFw.settings = {
-		endpoint: 'http://coenv.dev/faculty/json',
+		ajaxobject: window.coenvfw,
+		ajaxurl: window.coenvfw.ajaxurl,
+		facultyEndpoint: window.coenvfw.facultyEndpoint,
+		memberLimit: 25,
 		widgetClass: 'coenv-fw',
 		sectionClass: 'coenv-fw-section',
 		feedbackClass: 'coenv-fw-feedback',
@@ -32,17 +34,18 @@ jQuery(function ($) {
 
 	$.CoEnvFw.prototype._init = function ( options ) {
 
+		var _this = this;
+
 		// set options
 		this.options = $.extend( true, {}, $.CoEnvFw.settings, options );
 
 		// identify DOM elements
 		this._elements();
 
-		// render members list
-		var _this = this;
 		this._getMembers().then( function () {
 			_this._renderMembers();
 		} );
+
 	};
 
 	$.CoEnvFw.prototype._elements = function () {
@@ -52,21 +55,65 @@ jQuery(function ($) {
 		this.$resultsList = this.element.find('.' + this.options.resultsClass );
 	};
 
+	/**
+	 * _getMembers()
+	 *
+	 * attempt to get members from WP transient
+	 * if transient is not set, fall back to _remoteGetMembers()
+	 */
 	$.CoEnvFw.prototype._getMembers = function () {
 
-		var dfd = new $.Deferred();
+		var dfd = new $.Deferred(),
+				_this = this;
 
-		var _this = this;
+		var data = {
+			action: 'coenv_faculty_widget_get_members'
+		};
+
+		// attempt to get members from WP transient
+		$.post( this.options.ajaxurl, data, function ( response ) {
+
+			if ( response !== 'false' ) {
+				// transient exists
+				// response has been json encoded
+				_this.members = $.parseJSON( response );
+
+				dfd.resolve();
+			} else {
+
+				// transient does not exist, get members via ajax call
+				_this._remoteGetMembers().then( function () {
+					dfd.resolve();
+				} );
+			}
+
+		} );
+
+		return dfd.promise();
+	};
+
+	/**
+	 * _remoteGetMembers()
+	 *
+	 * attempt to get members from remote coenv faculty endpoint
+	 */
+	$.CoEnvFw.prototype._remoteGetMembers = function () {
+
+		var dfd = new $.Deferred(),
+				_this = this;
 
 		$.ajax({
-			url: _this.options.endpoint,
+			url: _this.options.facultyEndpoint,
 			dataType: 'jsonp',
-			success: function ( data, textStatus ) {
-				_this.members = data;
+			success: function ( response ) {
+				_this.members = response;
 
 				if ( !_this.members.length ) {
 					_this._failed();
 				}
+
+				// save WP members transient
+				_this._saveMembers( response );
 
 				dfd.resolve();
 			},
@@ -78,10 +125,49 @@ jQuery(function ($) {
 		return dfd.promise();
 	};
 
+	$.CoEnvFw.prototype._saveMembers = function ( members ) {
+
+		var dataMembers = [];
+
+		$.each( members, function () {
+			dataMembers.push({
+				'permalink': this.permalink,
+				'full_name': this.full_name,
+				'first_name': this.first_name,
+				'last_name': this.last_name,
+				//'images': this.images,
+				//'themes': this.themes,
+				//'units': this.units
+			});
+		} );
+
+		var data = {
+			action: 'coenv_faculty_widget_save_members',
+			members: members
+		};
+
+		$.ajax({
+			url: this.options.ajaxurl,
+			data: data,
+			type: 'POST',
+			success: function ( response ) {
+				console.log( response );
+			},
+			error: function ( jqXHR, textStatus ) {
+				console.log( jqXHR );
+			}
+		});
+
+//		$.post( this.options.ajaxurl, data, function ( response ) {
+//			console.log( response );
+//		} );
+	};
+
 	/**
 	 *	_failed()
 	 *
 	 * Members did not load, or there were no members returned
+	 * Show link to all faculty
 	 */
 	$.CoEnvFw.prototype._failed = function ( msg ) {
 
@@ -114,8 +200,6 @@ jQuery(function ($) {
 					$link = $('<a></a>'),
 					$img = $('<img />'),
 					$name = $('<p></p>');
-
-			console.log( member );
 
 			$item.addClass( _this.options.memberClass );
 			$item.attr( 'style', 'background-color: ' + member.units[0].color + ';' );

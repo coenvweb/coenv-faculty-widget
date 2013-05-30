@@ -18,14 +18,29 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 	}
 
 	public function form( $instance ) {
+		global $coenv_faculty_widget;
+
+		$units = get_transient('coenv_faculty_widget_units');
+		$selected_unit = $instance['unit'];
+
 		?>
-			<p>Form goes here.</p>
+			<p>
+				<label for="<?php echo $this->get_field_name( 'unit' ) ?>"><?php _e( 'Select unit' ) ?></label>
+				<select <?php if ( $units ) echo 'data-units="true" ' ?>id="coenv-faculty-widget-unit-selector" name="<?php echo $this->get_field_name( 'unit' ) ?>">
+					<option>All units</option>
+					<?php if ( $units ) : ?>
+						<?php foreach ( $units as $unit ) : ?>
+							<option value="<?php echo $unit['slug'] ?>"<?php if ( $selected_unit === $unit['slug'] ) echo ' selected="selected"' ?>><?php echo $unit['name'] ?></option>
+						<?php endforeach ?>
+					<?php endif ?>
+				</select>
+			</p>
 		<?php
 	}
 
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
-		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['unit'] = $new_instance['unit'];
 		 
 		return $instance;
 	}
@@ -34,7 +49,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		extract( $args );
 
 		?>
-			<?php //echo $before_widget ?>
+
 			<div class="coenv-fw">
 
 				<header class="coenv-fw-section coenv-fw-header">
@@ -54,7 +69,6 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 			</div>
 
-			<?php// echo $after_widget ?>
 		<?php
 	}
 

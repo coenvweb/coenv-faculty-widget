@@ -26,6 +26,9 @@ module.exports = function(grunt) {
 				files: {
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
 						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget.js'
+					],
+					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget-admin.js': [
+						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget-admin.js'
 					]
 				}
 			}
