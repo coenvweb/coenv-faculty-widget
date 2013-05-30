@@ -144,7 +144,8 @@ class CoEnvFacultyWidget {
 	 */
 	function ajax_get_members() {
 
-		//delete_transient( 'coenv_faculty_widget_members' );
+		// debugging
+		delete_transient( 'coenv_faculty_widget_members' );
 
 		$members = get_transient( 'coenv_faculty_widget_members' );
 		echo json_encode( $members );
@@ -164,7 +165,7 @@ class CoEnvFacultyWidget {
 		}
 
 		//echo count($members);
-		die();
+		//die();
 
 		if ( !isset( $members ) || empty( $members ) ) {
 			return false;
