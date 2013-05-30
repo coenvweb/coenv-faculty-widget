@@ -151,7 +151,7 @@ jQuery(function ($) {
 			data: data,
 			type: 'POST',
 			success: function ( response ) {
-				console.log( response );
+				//console.log( response );
 			},
 			error: function ( jqXHR, textStatus ) {
 				console.log( jqXHR );
