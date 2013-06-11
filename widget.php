@@ -67,6 +67,9 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 				<ul class="coenv-fw-section coenv-fw-results"></ul>
 
+				<footer class="coenv-fw-section coenv-fw-footer">
+					<a href="#"><i class="icon-grid"></i> All related faculty</a>
+				</footer>
 			</div>
 
 		<?php

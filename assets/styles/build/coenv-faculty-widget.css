@@ -5,14 +5,78 @@
 		This is the development SASS stylesheet.
 		Requires Compass.
 		======================================================================== */
+@font-face {
+  font-family: 'entypo';
+  src: url("../../fonts/entypo.eot");
+  src: url("../../fonts/entypo.eot?#iefix") format("embedded-opentype"), url("../../fonts/entypo.woff") format("woff"), url("../../fonts/entypo.ttf") format("truetype"), url("../../fonts/entypo.svg#entypo") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+/* line 13, ../src/_icomoon.scss */
+[data-icon]:before {
+  font-family: 'entypo';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+/* line 30, ../src/_icomoon.scss */
+.icon-arrow-left, .icon-arrow-down, .icon-arrow-up, .icon-arrow-right, .icon-grid {
+  font-family: 'entypo';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 40, ../src/_icomoon.scss */
+.icon-arrow-left:before {
+  content: "\e028";
+}
+
+/* line 43, ../src/_icomoon.scss */
+.icon-arrow-down:before {
+  content: "\e029";
+}
+
+/* line 46, ../src/_icomoon.scss */
+.icon-arrow-up:before {
+  content: "\e02a";
+}
+
+/* line 49, ../src/_icomoon.scss */
+.icon-arrow-right:before {
+  content: "\e02b";
+}
+
+/* line 52, ../src/_icomoon.scss */
+.icon-grid:before {
+  content: "\e005";
+}
+
 /*	Useful extensions
 		======================================================================== */
-/* line 14, ../src/coenv-faculty-widget.scss */
+/* line 15, ../src/coenv-faculty-widget.scss */
 .coenv-fw-antialiased, .coenv-fw {
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 19, ../src/coenv-faculty-widget.scss */
+/* line 20, ../src/coenv-faculty-widget.scss */
 .coenv-fw-clearfix:before, .coenv-fw .coenv-fw-feedback p:before, .coenv-fw .coenv-fw-results:before,
 .coenv-fw-clearfix:after,
 .coenv-fw .coenv-fw-feedback p:after,
@@ -23,7 +87,7 @@
   /* 2 */
 }
 
-/* line 24, ../src/coenv-faculty-widget.scss */
+/* line 25, ../src/coenv-faculty-widget.scss */
 .coenv-fw-clearfix:after, .coenv-fw .coenv-fw-feedback p:after, .coenv-fw .coenv-fw-results:after {
   clear: both;
 }
@@ -32,61 +96,62 @@
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 33, ../src/coenv-faculty-widget.scss */
+/* line 34, ../src/coenv-faculty-widget.scss */
 .coenv-fw-clearfix, .coenv-fw .coenv-fw-feedback p, .coenv-fw .coenv-fw-results {
   *zoom: 1;
 }
 
-/* line 41, ../src/coenv-faculty-widget.scss */
+/* line 42, ../src/coenv-faculty-widget.scss */
 .coenv-fw-sans, .coenv-fw, .coenv-fw .coenv-fw-header h1 a small {
   font-family: "open-sans", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 45, ../src/coenv-faculty-widget.scss */
+/* line 46, ../src/coenv-faculty-widget.scss */
 .coenv-fw-serif, .coenv-fw .coenv-fw-header h1 {
   font-family: "Skolar", Georgia, serif;
 }
 
 /*	The Widget
 		======================================================================== */
-/* line 52, ../src/coenv-faculty-widget.scss */
+/* line 53, ../src/coenv-faculty-widget.scss */
 .coenv-fw {
+  margin-bottom: 1em;
   background: #303030;
   color: #fff;
 }
-/* line 58, ../src/coenv-faculty-widget.scss */
+/* line 60, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-section {
   border-top: 1px solid #3d3d3d;
   border-bottom: 1px solid #222;
 }
-/* line 62, ../src/coenv-faculty-widget.scss */
+/* line 64, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-section:first-child {
   border-top: none;
 }
-/* line 66, ../src/coenv-faculty-widget.scss */
+/* line 68, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-section:last-child {
   border-bottom: none;
 }
-/* line 74, ../src/coenv-faculty-widget.scss */
+/* line 76, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-header h1 {
   margin: 0;
   font-size: 36px;
   line-height: 36px;
   font-weight: 300;
 }
-/* line 81, ../src/coenv-faculty-widget.scss */
+/* line 83, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-header h1 a {
   display: block;
   padding: 16px 16px 8px;
   text-decoration: none;
   color: #fff;
 }
-/* line 87, ../src/coenv-faculty-widget.scss */
+/* line 89, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-header h1 a:hover {
   color: #fff !important;
   background: #3B2559;
 }
-/* line 92, ../src/coenv-faculty-widget.scss */
+/* line 94, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-header h1 a small {
   display: block;
   font-size: 11px;
@@ -95,18 +160,18 @@
   font-weight: 600;
   color: #ccc;
 }
-/* line 108, ../src/coenv-faculty-widget.scss */
+/* line 110, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback {
   padding: 8px 16px;
 }
-/* line 111, ../src/coenv-faculty-widget.scss */
+/* line 113, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p {
   margin: 0 !important;
   font-size: 11px !important;
   line-height: 15px !important;
   font-weight: 600;
 }
-/* line 118, ../src/coenv-faculty-widget.scss */
+/* line 120, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p .coenv-fw-feedback-number {
   float: left;
   display: block;
@@ -114,27 +179,27 @@
   font-size: 30px;
   line-height: 30px;
 }
-/* line 126, ../src/coenv-faculty-widget.scss */
+/* line 128, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p.coenv-fw-feedback-loading {
   text-align: center;
 }
-/* line 132, ../src/coenv-faculty-widget.scss */
+/* line 134, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback a {
   text-decoration: none;
   color: #00a8ff !important;
 }
-/* line 136, ../src/coenv-faculty-widget.scss */
+/* line 138, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback a:hover {
   text-decoration: underline;
   color: #00a8ff !important;
 }
-/* line 145, ../src/coenv-faculty-widget.scss */
+/* line 147, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 151, ../src/coenv-faculty-widget.scss */
+/* line 153, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member {
   position: relative;
   float: left;
@@ -142,27 +207,27 @@
   padding-top: 20%;
   width: 20%;
 }
-/* line 160, ../src/coenv-faculty-widget.scss */
+/* line 162, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-1 {
   width: 20%;
 }
-/* line 164, ../src/coenv-faculty-widget.scss */
+/* line 166, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-2 {
   width: 40%;
 }
-/* line 168, ../src/coenv-faculty-widget.scss */
+/* line 170, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-3 {
   width: 60%;
 }
-/* line 172, ../src/coenv-faculty-widget.scss */
+/* line 174, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-4 {
   width: 80%;
 }
-/* line 176, ../src/coenv-faculty-widget.scss */
+/* line 178, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-5 {
   width: 100%;
 }
-/* line 182, ../src/coenv-faculty-widget.scss */
+/* line 184, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner {
   position: absolute;
   top: 0;
@@ -179,7 +244,7 @@
   vertical-align: middle;
   text-align: center;
 }
-/* line 195, ../src/coenv-faculty-widget.scss */
+/* line 197, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-image {
   display: block;
   margin: 0;
@@ -191,7 +256,7 @@
   -o-border-radius: 0;
   border-radius: 0;
 }
-/* line 203, ../src/coenv-faculty-widget.scss */
+/* line 205, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-name {
   display: none;
   position: absolute;
@@ -206,14 +271,39 @@
   background: inherit;
   text-align: left;
 }
-/* line 218, ../src/coenv-faculty-widget.scss */
+/* line 220, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover {
   z-index: 100;
   top: -25%;
   left: -25%;
   width: 150%;
 }
-/* line 224, ../src/coenv-faculty-widget.scss */
+/* line 226, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover .coenv-fw-member-name {
   display: block;
+}
+/* line 238, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-footer {
+  font-size: 11px;
+  line-height: 15px;
+  font-weight: 600;
+}
+/* line 243, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-footer a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #ccc;
+}
+/* line 250, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-footer a:hover {
+  color: #fff !important;
+  background: #3B2559;
+}
+/* line 255, ../src/coenv-faculty-widget.scss */
+.coenv-fw .coenv-fw-footer i {
+  position: relative;
+  top: 1px;
+  display: inline;
+  margin-right: 5px;
 }

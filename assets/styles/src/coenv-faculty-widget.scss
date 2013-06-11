@@ -7,6 +7,7 @@
 		======================================================================== */
 
 @import 'compass';
+@import 'icomoon.scss';
 
 /*	Useful extensions
 		======================================================================== */
@@ -50,6 +51,7 @@
 		======================================================================== */
 
 .coenv-fw {
+	margin-bottom: 1em;
 	background: #303030;
 	color: #fff;
 	@extend .coenv-fw-antialiased;
@@ -232,6 +234,33 @@
 		} // .coenv-fw-member
 
 	} // .coenv-fw-results
+
+	.coenv-fw-footer {
+		font-size: 11px;
+		line-height: 15px;
+		font-weight: 600;
+
+		a {
+			display: block;
+			padding: 8px 16px;
+			text-decoration: none;
+			color: #ccc;
+		}
+
+		a:hover {
+			color: #fff !important;
+			background: #3B2559;
+		}
+
+		i {
+			position: relative;
+			top: 1px;
+			display: inline;
+			margin-right: 5px;
+			//font-size: 14px;
+		}
+
+	} // .coenv-fw-footer
 
 } // .coenv-fw
 

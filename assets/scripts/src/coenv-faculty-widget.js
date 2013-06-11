@@ -188,12 +188,17 @@ jQuery(function ($) {
 		var members = this.members,
 				$msg = '<p><span class="' + this.options.feedbackNumberClass + '">' + members.length + '</span> faculty working on <a href="#">Climate</a> in <a href="#">Earth &amp; Space Sciences</a></p>',
 				$items = [],
-				_this = this;
+				_this = this,
+				count = 0;
 
 		// add message to feedback area
 		this.$feedback.html( $msg );
 
 		$.each( members, function () {
+
+			if ( count === 25 ) {
+				return;
+			}
 
 			var member = this,
 					$item = $('<li></li>'),
@@ -218,6 +223,8 @@ jQuery(function ($) {
 			$link.appendTo( $item );
 
 			$items.push( $item );
+
+			count++;
 
 		} );
 
