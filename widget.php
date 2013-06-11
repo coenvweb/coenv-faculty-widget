@@ -48,17 +48,19 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 	public function widget( $args, $instance ) {
 		extract( $args );
 
-		if ( isset( $instance['header_style'] ) && $instance['header_style'] == 'coenv_local' ) {
+	//	if ( isset( $instance['header_style'] ) && $instance['header_style'] == 'coenv_local' ) {
+			$header_style = ' coenv-fw-local';
 			$header_text = 'Related Faculty';
-		} else {
-			$header_text = 'Faculty <small>UW College of the Environment</small>';
-		}
+	//	} else {
+	//		$header_style = '';
+	//		$header_text = 'Faculty <small>UW College of the Environment</small>';
+	//	}
 
 		?>
 
 			<div class="coenv-fw">
 
-				<header class="coenv-fw-section coenv-fw-header">
+				<header class="coenv-fw-section coenv-fw-header<?php echo $header_style ?>">
 					<h1>
 						<a href="http://coenv.dev/faculty/"><?php echo $header_text ?></a>
 					</h1>
