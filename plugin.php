@@ -27,9 +27,11 @@ class CoEnvFacultyWidget {
 		// Plugin noncename (for form submission)
 		if ( !defined('COENVFW_NONCENAME') ) define( 'COENVFW_NONCENAME', 'coenvfw' );
 
-		$this->faculty_endpoint = 'http://coenv.dev/faculty/json';
-		$this->units_endpoint = 'http://coenv.dev/faculty/units/json';
-		$this->themes_endpoint = 'http://coenv.dev/faculty/themes/json';
+
+		// WORKING ON THIS...
+		$this->faculty_endpoint = 'http://coenv.elcontraption.com/faculty/themes/all/units/all/json';
+		$this->units_endpoint = 'http://coenv.elcontraption.com/faculty/units/json';
+		$this->themes_endpoint = 'http://coenv.elcontraption.com/faculty/themes/json';
 
 		// Initialize plugin
 		$this->init();
@@ -56,10 +58,10 @@ class CoEnvFacultyWidget {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_and_styles' ) );
 
 		// ajax get/save faculty member actions
-		add_action( 'wp_ajax_coenv_faculty_widget_get_members', array( $this, 'ajax_get_members' ) );
-		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_get_members', array( $this, 'ajax_get_members' ) );
-		add_action( 'wp_ajax_coenv_faculty_widget_save_members', array( $this, 'ajax_save_members' ) );
-		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_save_members', array( $this, 'ajax_save_members' ) );
+		add_action( 'wp_ajax_coenv_faculty_widget_get_cached_members', array( $this, 'ajax_get_cached_members' ) );
+		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_get_cached_members', array( $this, 'ajax_get_cached_members' ) );
+		add_action( 'wp_ajax_coenv_faculty_widget_cache_members', array( $this, 'ajax_cache_members' ) );
+		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_cache_members', array( $this, 'ajax_cache_members' ) );
 
 		// ajax get/save units actions
 		add_action( 'wp_ajax_coenv_faculty_widget_get_units', array( $this, 'ajax_get_units' ) );
@@ -142,7 +144,7 @@ class CoEnvFacultyWidget {
 	/**
 	 * Attempts to get faculty members from transient
 	 */
-	function ajax_get_members() {
+	function ajax_get_cached_members() {
 
 		// debugging
 		delete_transient( 'coenv_faculty_widget_members' );
@@ -153,19 +155,10 @@ class CoEnvFacultyWidget {
 	}
 
 	/**
-	 * Save faculty members from ajax call
+	 * Cache faculty members from ajax call
 	 */
-	function ajax_save_members() {
+	function ajax_cache_members() {
 		$members = $_POST['members'];
-
-		$count = 1;
-		foreach ( $members as $member ) {
-			echo $count . ': ' . $member['full_name'] . "\n";
-			$count++;
-		}
-
-		//echo count($members);
-		//die();
 
 		if ( !isset( $members ) || empty( $members ) ) {
 			return false;

@@ -48,32 +48,54 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 	public function widget( $args, $instance ) {
 		extract( $args );
 
-	//	if ( isset( $instance['header_style'] ) && $instance['header_style'] == 'coenv_local' ) {
-			$header_style = ' coenv-fw-local';
+		$classes = array();
+		$header_style = '';
+
+		if ( isset( $instance['filters'] ) ) {
+
+			if ( isset( $instance['filters']['themes'] ) && !empty( $instance['filters']['themes'] ) ) {
+				$themes = implode( ' ', $instance['filters']['themes'] );
+			}
+
+			if ( isset( $instance['filters']['units'] ) && !empty( $instance['filters']['units'] ) ) {
+				$units = implode( ' ', $instance['filters']['units'] );
+			}
+
+		}
+
+		if ( isset( $instance['header_style'] ) && $instance['header_style'] == 'coenv_local' ) {
+			$classes[] = 'coenv-fw-local';
 			$header_text = 'Related Faculty';
-	//	} else {
-	//		$header_style = '';
-	//		$header_text = 'Faculty <small>UW College of the Environment</small>';
-	//	}
+		} else {
+			$header_text = 'Faculty <small>UW College of the Environment</small>';
+		}
+
+		if ( isset( $instance['orientation'] ) && $instance['orientation'] == 'horizontal' ) {
+			$classes[] = 'coenv-fw-orientation-horizontal';
+		}
 
 		?>
 
-			<div class="coenv-fw">
+			<div class="coenv-fw<?php echo ' ' . implode( ' ', $classes ) ?>" data-theme="<?php echo $themes ?>" data-unit="<?php echo $units ?>">
 
-				<header class="coenv-fw-section coenv-fw-header<?php echo $header_style ?>">
-					<h1>
-						<a href="http://coenv.dev/faculty/"><?php echo $header_text ?></a>
-					</h1>
-				</header>
+				<div class="coenv-fw-section-horizontal">
 
-				<div class="coenv-fw-section coenv-fw-feedback">
-					<p class="coenv-fw-feedback-loading">Loading...</p>
+					<header class="coenv-fw-section coenv-fw-header">
+						<h1>
+							<a href="http://coenv.dev/faculty/"><?php echo $header_text ?></a>
+						</h1>
+					</header>
+
+					<div class="coenv-fw-section coenv-fw-feedback">
+						<p class="coenv-fw-feedback-loading">Loading...</p>
+					</div>
+
 				</div>
 
 				<ul class="coenv-fw-section coenv-fw-results"></ul>
 
 				<footer class="coenv-fw-section coenv-fw-footer">
-					<a href="#"><i class="icon-grid"></i> All related faculty</a>
+					<a href="#"><i class="icon-grid"></i> See all related faculty</a>
 				</footer>
 			</div>
 

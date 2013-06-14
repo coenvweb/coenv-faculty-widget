@@ -1,4 +1,4 @@
-/*	CoEnv Faculty Widget
+ /*	CoEnv Faculty Widget
 
 		Author: Darin Reid / http://elcontraption.com/
 
@@ -160,9 +160,9 @@ you can use the generic selector below, but it's slower:
   font-weight: 600;
   color: #ccc;
 }
-/* line 108, ../src/coenv-faculty-widget.scss */
-.coenv-fw .coenv-fw-header.coenv-fw-local h1 a {
-  padding: 8px 16px 0px;
+/* line 110, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-local .coenv-fw-header h1 a {
+  padding: 8px 16px 0;
   font-size: 24px;
 }
 /* line 115, ../src/coenv-faculty-widget.scss */
@@ -170,13 +170,17 @@ you can use the generic selector below, but it's slower:
   padding: 8px 16px;
 }
 /* line 118, ../src/coenv-faculty-widget.scss */
+.no-js .coenv-fw .coenv-fw-feedback {
+  display: none;
+}
+/* line 122, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p {
   margin: 0 !important;
   font-size: 11px !important;
   line-height: 15px !important;
   font-weight: 600;
 }
-/* line 125, ../src/coenv-faculty-widget.scss */
+/* line 129, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p .coenv-fw-feedback-number {
   float: left;
   display: block;
@@ -184,27 +188,27 @@ you can use the generic selector below, but it's slower:
   font-size: 30px;
   line-height: 30px;
 }
-/* line 133, ../src/coenv-faculty-widget.scss */
+/* line 137, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p.coenv-fw-feedback-loading {
   text-align: center;
 }
-/* line 139, ../src/coenv-faculty-widget.scss */
+/* line 143, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback a {
   text-decoration: none;
   color: #00a8ff !important;
 }
-/* line 143, ../src/coenv-faculty-widget.scss */
+/* line 147, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback a:hover {
   text-decoration: underline;
   color: #00a8ff !important;
 }
-/* line 152, ../src/coenv-faculty-widget.scss */
+/* line 156, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 158, ../src/coenv-faculty-widget.scss */
+/* line 162, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member {
   position: relative;
   float: left;
@@ -212,27 +216,27 @@ you can use the generic selector below, but it's slower:
   padding-top: 20%;
   width: 20%;
 }
-/* line 167, ../src/coenv-faculty-widget.scss */
+/* line 171, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-1 {
   width: 20%;
 }
-/* line 171, ../src/coenv-faculty-widget.scss */
+/* line 175, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-2 {
   width: 40%;
 }
-/* line 175, ../src/coenv-faculty-widget.scss */
+/* line 179, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-3 {
   width: 60%;
 }
-/* line 179, ../src/coenv-faculty-widget.scss */
+/* line 183, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-4 {
   width: 80%;
 }
-/* line 183, ../src/coenv-faculty-widget.scss */
+/* line 187, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-5 {
   width: 100%;
 }
-/* line 189, ../src/coenv-faculty-widget.scss */
+/* line 193, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner {
   position: absolute;
   top: 0;
@@ -249,7 +253,7 @@ you can use the generic selector below, but it's slower:
   vertical-align: middle;
   text-align: center;
 }
-/* line 202, ../src/coenv-faculty-widget.scss */
+/* line 206, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-image {
   display: block;
   margin: 0;
@@ -261,7 +265,7 @@ you can use the generic selector below, but it's slower:
   -o-border-radius: 0;
   border-radius: 0;
 }
-/* line 210, ../src/coenv-faculty-widget.scss */
+/* line 214, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-name {
   display: none;
   position: absolute;
@@ -276,39 +280,61 @@ you can use the generic selector below, but it's slower:
   background: inherit;
   text-align: left;
 }
-/* line 225, ../src/coenv-faculty-widget.scss */
+/* line 229, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover {
   z-index: 100;
   top: -25%;
   left: -25%;
   width: 150%;
 }
-/* line 231, ../src/coenv-faculty-widget.scss */
+/* line 235, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover .coenv-fw-member-name {
   display: block;
 }
-/* line 243, ../src/coenv-faculty-widget.scss */
+/* line 247, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer {
   font-size: 11px;
   line-height: 15px;
   font-weight: 600;
 }
-/* line 248, ../src/coenv-faculty-widget.scss */
+/* line 252, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer a {
   display: block;
   padding: 8px 16px;
   text-decoration: none;
   color: #ccc;
 }
-/* line 255, ../src/coenv-faculty-widget.scss */
+/* line 259, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer a:hover {
   color: #fff !important;
   background: #3B2559;
 }
-/* line 260, ../src/coenv-faculty-widget.scss */
+/* line 264, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer i {
   position: relative;
   top: 1px;
   display: inline;
   margin-right: 5px;
+}
+
+/*	Horizontal orientation
+		======================================================================== */
+/* line 279, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-orientation-horizontal {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 287, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-orientation-horizontal .coenv-fw-section-horizontal {
+  float: left;
+}
+/* line 384, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-orientation-horizontal .coenv-fw-results {
+  overflow: hidden;
+  border: none;
+}
+/* line 392, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-orientation-horizontal .coenv-fw-results .coenv-fw-member {
+  padding-top: 16.666666667%;
+  width: 16.666666667%;
 }
