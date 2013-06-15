@@ -84,7 +84,8 @@ jQuery(function ($) {
 				_this = this;
 
 		var data = {
-			action: 'coenv_faculty_widget_get_cached_members'
+			action: 'coenv_faculty_widget_get_cached_members',
+			//filters: this.filters
 		};
 
 		// attempt to get cached members from WP transient

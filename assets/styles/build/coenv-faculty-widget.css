@@ -176,8 +176,8 @@ you can use the generic selector below, but it's slower:
 /* line 122, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p {
   margin: 0 !important;
-  font-size: 11px !important;
-  line-height: 15px !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
   font-weight: 600;
 }
 /* line 129, ../src/coenv-faculty-widget.scss */
@@ -293,8 +293,8 @@ you can use the generic selector below, but it's slower:
 }
 /* line 247, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer {
-  font-size: 11px;
-  line-height: 15px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 600;
 }
 /* line 252, ../src/coenv-faculty-widget.scss */
