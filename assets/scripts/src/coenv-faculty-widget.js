@@ -212,7 +212,7 @@ jQuery(function ($) {
 	$.CoEnvFw.prototype._renderMembers = function () {
 
 		var members = this.members,
-				$msg = '<p><span class="' + this.options.feedbackNumberClass + '">' + members.length + '</span> faculty working on <a href="#">Climate</a> in <a href="#">Earth &amp; Space Sciences</a></p>',
+				$msg = '<p><span class="' + this.options.feedbackNumberClass + '">' + members.length + '</span> faculty working on <a href="#">Environmental Chemistry</a></p>',
 				$items = [],
 				_this = this,
 				count = 0;
