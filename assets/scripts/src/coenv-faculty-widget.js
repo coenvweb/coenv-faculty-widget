@@ -64,13 +64,13 @@ jQuery(function ($) {
 	/**
 	 * Parse filters
 	 * Filters should be passed as space-separated data attributes:
-	 * data-theme="geo-physical-sciences conservation" data-unit="earth-space-sciences"
+	 * data-themes="geo-physical-sciences conservation" data-units="earth-space-sciences"
 	 */
 	$.CoEnvFw.prototype._parseFilters = function () {
 		var filters = {};
 
-		filters.theme = this.element.attr('data-theme').split(' ');
-		filters.unit = this.element.attr('data-unit').split(' ');
+		filters.themes = this.element.attr('data-themes').split(' ');
+		filters.units = this.element.attr('data-units').split(' ');
 
 		return filters;
 	};
@@ -84,8 +84,7 @@ jQuery(function ($) {
 				_this = this;
 
 		var data = {
-			action: 'coenv_faculty_widget_get_cached_members',
-			//filters: this.filters
+			action: 'coenv_faculty_widget_get_cached_members'
 		};
 
 		// attempt to get cached members from WP transient
@@ -116,13 +115,25 @@ jQuery(function ($) {
 	$.CoEnvFw.prototype._remoteGetMembers = function () {
 
 		var dfd = new $.Deferred(),
-				_this = this;
+				_this = this,
+				members,
+				themes,
+				units,
+				url;
+
+		themes = this.filters.themes.join('&') || 'all';
+		units = this.filters.units.join('&') || 'all';
+
+		// add filters to url
+		url = _this.options.facultyEndpoint;
+		url = url.replace( 'themes/all', 'themes/' + themes );
+		url = url.replace( 'units/all', 'units/' + units );
 
 		$.ajax({
-			url: _this.options.facultyEndpoint,
+			url: url,
 			dataType: 'jsonp',
 			success: function ( response ) {
-				_this.members = response;
+				_this.members = _this._buildMemberObjects( response );
 
 				if ( !_this.members.length ) {
 					// this message should probably come from the api itself
@@ -145,36 +156,41 @@ jQuery(function ($) {
 	};
 
 	/**
+	 * Build member objects
+	 * to save to cache
+	 */
+	$.CoEnvFw.prototype._buildMemberObjects = function ( members ) {
+
+		var dataMembers = [];
+
+		// reduce members
+		// limited amount of data allowed with POST request
+		$.each( members, function () {
+			dataMembers.push({
+				permalink: this.permalink,
+				full_name: this.full_name,
+				image: this.images.thumbnail.url,
+				color: this.units[0].color
+			});
+		} );
+
+		return dataMembers;
+	};
+
+	/**
 	 * Cache members
 	 * Save members as WP transient
 	 */
 	$.CoEnvFw.prototype._cacheMembers = function () {
 
-		var _this = this,
-				dataMembers = [];
+		var _this = this;
 
-		// reduce members
-		// limited amount of data allowed with POST request
-		$.each( this.members, function () {
-			var themes = $.map( this.themes, function ( val ) {
-				return val.slug;
-			} );
-
-			var units = $.map( this.units, function ( val ) {
-				return val.slug;
-			} );
-
-			dataMembers.push({
-				permalink: this.permalink,
-				full_name: this.full_name,
-				themes: themes,
-				units: units
-			});
-		} );
+		// need to save some sort of key along with the cache
+		// to keep track of unique filter for this cache
 
 		var data = {
 			action: 'coenv_faculty_widget_cache_members',
-			members: dataMembers
+			members: this.members
 		};
 
 		$.ajax({
@@ -217,13 +233,13 @@ jQuery(function ($) {
 					$name = $('<p></p>');
 
 			$item.addClass( _this.options.memberClass );
-			$item.attr( 'style', 'background-color: ' + member.units[0].color + ';' );
+			$item.attr( 'style', 'background-color: ' + member.color + ';' );
 
 			$link.addClass( _this.options.memberInnerClass );
 			$link.attr( 'href', member.permalink );
 
 			$img.addClass( _this.options.memberImageClass );
-			$img.attr( 'src', member.images.thumbnail.url );
+			$img.attr( 'src', member.image );
 			$img.appendTo( $link );
 
 			$name.addClass( _this.options.memberNameClass );

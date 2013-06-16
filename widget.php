@@ -20,7 +20,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 	public function form( $instance ) {
 		global $coenv_faculty_widget;
 
-		$units = get_transient('coenv_faculty_widget_units');
+		$units = $coenv_faculty_widget->get_units();
 		$selected_unit = $instance['unit'];
 
 		?>
@@ -46,6 +46,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
+		global $coenv_faculty_widget;
 		extract( $args );
 
 		$classes = array();
@@ -63,6 +64,10 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 		}
 
+		// build filter cache key from theme/unit ids
+		// this is used to cache this unique theme/unit request
+		$filter_cache_key = $themes;
+
 		if ( isset( $instance['header_style'] ) && $instance['header_style'] == 'coenv_local' ) {
 			$classes[] = 'coenv-fw-local';
 			$header_text = 'Related Faculty';
@@ -73,10 +78,9 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		if ( isset( $instance['orientation'] ) && $instance['orientation'] == 'horizontal' ) {
 			$classes[] = 'coenv-fw-orientation-horizontal';
 		}
-
 		?>
 
-			<div class="coenv-fw<?php echo ' ' . implode( ' ', $classes ) ?>" data-theme="<?php echo $themes ?>" data-unit="<?php echo $units ?>">
+			<div class="coenv-fw<?php echo ' ' . implode( ' ', $classes ) ?>" data-themes="<?php echo $themes ?>" data-units="<?php echo $units ?>" data-filter-cache-key="<?php echo $filter_cache_key ?>">
 
 				<div class="coenv-fw-section-horizontal">
 
@@ -95,7 +99,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 				<ul class="coenv-fw-section coenv-fw-results"></ul>
 
 				<footer class="coenv-fw-section coenv-fw-footer">
-					<a href="#"><i class="icon-grid"></i> See all related faculty</a>
+					<a href="#"><i class="icon-faculty-grid-alt-2"></i> See all related faculty</a>
 				</footer>
 			</div>
 

@@ -146,6 +146,12 @@ class CoEnvFacultyWidget {
 	 */
 	function ajax_get_cached_members() {
 
+		// check for passed filters
+		if ( isset( $_POST['filters'] ) && !empty( $_POST['filters'] ) ) {
+
+			// combine filters into unique key
+		}
+
 		// debugging
 		delete_transient( 'coenv_faculty_widget_members' );
 

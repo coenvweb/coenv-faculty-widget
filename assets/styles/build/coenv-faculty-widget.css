@@ -6,9 +6,9 @@
 		Requires Compass.
 		======================================================================== */
 @font-face {
-  font-family: 'entypo';
-  src: url("../../fonts/entypo.eot");
-  src: url("../../fonts/entypo.eot?#iefix") format("embedded-opentype"), url("../../fonts/entypo.woff") format("woff"), url("../../fonts/entypo.ttf") format("truetype"), url("../../fonts/entypo.svg#entypo") format("svg");
+  font-family: 'icomoon';
+  src: url("../../fonts/icomoon.eot");
+  src: url("../../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../../fonts/icomoon.woff") format("woff"), url("../../fonts/icomoon.ttf") format("truetype"), url("../../fonts/icomoon.svg#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 /* line 13, ../src/_icomoon.scss */
 [data-icon]:before {
-  font-family: 'entypo';
+  font-family: 'icomoon';
   content: attr(data-icon);
   speak: none;
   font-weight: normal;
@@ -33,8 +33,8 @@ you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
 /* line 30, ../src/_icomoon.scss */
-.icon-arrow-left, .icon-arrow-down, .icon-arrow-up, .icon-arrow-right, .icon-grid {
-  font-family: 'entypo';
+.icon-faculty-grid-alt-2 {
+  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -45,28 +45,8 @@ you can use the generic selector below, but it's slower:
 }
 
 /* line 40, ../src/_icomoon.scss */
-.icon-arrow-left:before {
-  content: "\e028";
-}
-
-/* line 43, ../src/_icomoon.scss */
-.icon-arrow-down:before {
-  content: "\e029";
-}
-
-/* line 46, ../src/_icomoon.scss */
-.icon-arrow-up:before {
-  content: "\e02a";
-}
-
-/* line 49, ../src/_icomoon.scss */
-.icon-arrow-right:before {
-  content: "\e02b";
-}
-
-/* line 52, ../src/_icomoon.scss */
-.icon-grid:before {
-  content: "\e005";
+.icon-faculty-grid-alt-2:before {
+  content: "\e00e";
 }
 
 /*	Useful extensions
