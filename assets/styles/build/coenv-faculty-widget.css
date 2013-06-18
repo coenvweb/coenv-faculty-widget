@@ -332,7 +332,7 @@ you can use the generic selector below, but it's slower:
 }
 /* line 325, ../src/coenv-faculty-widget.scss */
 .coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p .coenv-fw-feedback-number {
-  color: #444;
+  color: #333;
 }
 /* line 331, ../src/coenv-faculty-widget.scss */
 .coenv-fw.coenv-fw-theme-light .coenv-fw-feedback a {
