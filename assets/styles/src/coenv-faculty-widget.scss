@@ -146,7 +146,9 @@
 			text-decoration: none;
 			//color: #00a8ff !important;
 			color: #fff !important;
+			font-weight: 400;
 			font-style: italic;
+			-webkit-font-smoothing: subpixel-antialiased;
 
 			&:hover {
 				text-decoration: underline;
