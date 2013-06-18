@@ -29,9 +29,9 @@ class CoEnvFacultyWidget {
 
 
 		// WORKING ON THIS...
-		$this->faculty_endpoint = 'http://coenv.elcontraption.com/faculty/themes/all/units/all/json';
-		$this->units_endpoint = 'http://coenv.elcontraption.com/faculty/units/json';
-		$this->themes_endpoint = 'http://coenv.elcontraption.com/faculty/themes/json';
+		$this->faculty_endpoint = 'http://coenvdev.com/faculty/themes/all/units/all/json';
+		$this->units_endpoint = 'http://coenvdev.com/faculty/units/json';
+		$this->themes_endpoint = 'http://coenvdev.com/faculty/themes/json';
 
 		// Initialize plugin
 		$this->init();
@@ -178,10 +178,42 @@ class CoEnvFacultyWidget {
 	}
 
 	/**
+	 * Attempts to get themes from transient
+	 */
+	function get_themes() {
+
+		if ( class_exists( 'CoEnvMemberApi' ) ) {
+			global $coenv_member_api;
+			$themes = $coenv_member_api->get_themes();
+		}
+
+		// need to work with ajax to get themes if this is a remote instance of the widget
+
+		//$units = get_transient( 'coenv_faculty_widget_themes' );
+		return $themes;
+	}
+
+	/**
 	 * Attempts to get units from transient
 	 */
+	function get_units() {
+
+		if ( class_exists( 'CoEnvMemberApi' ) ) {
+			global $coenv_member_api;
+			$units = $coenv_member_api->get_units();
+		}
+
+		// need to work with ajax to get units if this is a remote instance of the widget
+
+		//$units = get_transient( 'coenv_faculty_widget_units' );
+		return $units;
+	}
+
+	/**
+	 * Ajax version of get_units()
+	 */
 	function ajax_get_units() {
-		$units = get_transient( 'coenv_faculty_widget_units' );
+		$units = get_units();
 		echo json_encode( $units );
 		die();
 	}

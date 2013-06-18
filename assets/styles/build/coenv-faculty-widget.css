@@ -52,7 +52,7 @@ you can use the generic selector below, but it's slower:
 /*	Useful extensions
 		======================================================================== */
 /* line 15, ../src/coenv-faculty-widget.scss */
-.coenv-fw-antialiased, .coenv-fw {
+.coenv-fw-antialiased, .coenv-fw, .coenv-fw.coenv-fw-theme-light {
   -webkit-font-smoothing: antialiased;
 }
 
@@ -159,36 +159,39 @@ you can use the generic selector below, but it's slower:
   font-size: 12px !important;
   line-height: 16px !important;
   font-weight: 600;
+  color: #ccc;
 }
-/* line 129, ../src/coenv-faculty-widget.scss */
+/* line 130, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p .coenv-fw-feedback-number {
   float: left;
   display: block;
   margin-right: 8px;
   font-size: 30px;
   line-height: 30px;
+  color: #fff;
 }
-/* line 137, ../src/coenv-faculty-widget.scss */
+/* line 139, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback p.coenv-fw-feedback-loading {
   text-align: center;
 }
-/* line 143, ../src/coenv-faculty-widget.scss */
+/* line 145, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback a {
   text-decoration: none;
-  color: #00a8ff !important;
+  color: #fff !important;
+  font-style: italic;
 }
-/* line 147, ../src/coenv-faculty-widget.scss */
+/* line 151, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-feedback a:hover {
   text-decoration: underline;
-  color: #00a8ff !important;
+  color: #fff !important;
 }
-/* line 156, ../src/coenv-faculty-widget.scss */
+/* line 161, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 162, ../src/coenv-faculty-widget.scss */
+/* line 167, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member {
   position: relative;
   float: left;
@@ -196,27 +199,27 @@ you can use the generic selector below, but it's slower:
   padding-top: 20%;
   width: 20%;
 }
-/* line 171, ../src/coenv-faculty-widget.scss */
+/* line 176, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-1 {
   width: 20%;
 }
-/* line 175, ../src/coenv-faculty-widget.scss */
+/* line 180, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-2 {
   width: 40%;
 }
-/* line 179, ../src/coenv-faculty-widget.scss */
+/* line 184, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-3 {
   width: 60%;
 }
-/* line 183, ../src/coenv-faculty-widget.scss */
+/* line 188, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-4 {
   width: 80%;
 }
-/* line 187, ../src/coenv-faculty-widget.scss */
+/* line 192, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-5 {
   width: 100%;
 }
-/* line 193, ../src/coenv-faculty-widget.scss */
+/* line 198, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner {
   position: absolute;
   top: 0;
@@ -233,7 +236,7 @@ you can use the generic selector below, but it's slower:
   vertical-align: middle;
   text-align: center;
 }
-/* line 206, ../src/coenv-faculty-widget.scss */
+/* line 211, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-image {
   display: block;
   margin: 0;
@@ -245,7 +248,7 @@ you can use the generic selector below, but it's slower:
   -o-border-radius: 0;
   border-radius: 0;
 }
-/* line 214, ../src/coenv-faculty-widget.scss */
+/* line 219, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-name {
   display: none;
   position: absolute;
@@ -260,36 +263,36 @@ you can use the generic selector below, but it's slower:
   background: inherit;
   text-align: left;
 }
-/* line 229, ../src/coenv-faculty-widget.scss */
+/* line 234, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover {
   z-index: 100;
   top: -25%;
   left: -25%;
   width: 150%;
 }
-/* line 235, ../src/coenv-faculty-widget.scss */
+/* line 240, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover .coenv-fw-member-name {
   display: block;
 }
-/* line 247, ../src/coenv-faculty-widget.scss */
+/* line 252, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer {
   font-size: 12px;
   line-height: 16px;
   font-weight: 600;
 }
-/* line 252, ../src/coenv-faculty-widget.scss */
+/* line 257, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer a {
   display: block;
   padding: 8px 16px;
   text-decoration: none;
   color: #ccc;
 }
-/* line 259, ../src/coenv-faculty-widget.scss */
+/* line 264, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer a:hover {
   color: #fff !important;
   background: #3B2559;
 }
-/* line 264, ../src/coenv-faculty-widget.scss */
+/* line 269, ../src/coenv-faculty-widget.scss */
 .coenv-fw .coenv-fw-footer i {
   position: relative;
   top: 1px;
@@ -297,24 +300,47 @@ you can use the generic selector below, but it's slower:
   margin-right: 5px;
 }
 
-/*	Horizontal orientation
+/*	Light theme
 		======================================================================== */
-/* line 279, ../src/coenv-faculty-widget.scss */
-.coenv-fw.coenv-fw-orientation-horizontal {
-  overflow: hidden;
-  *zoom: 1;
+/* line 284, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light {
+  background: #eee;
+  color: #444;
 }
-/* line 287, ../src/coenv-faculty-widget.scss */
-.coenv-fw.coenv-fw-orientation-horizontal .coenv-fw-section-horizontal {
-  float: left;
+/* line 289, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-section {
+  border-top-color: #fff;
+  border-bottom-color: #ccc;
 }
-/* line 384, ../src/coenv-faculty-widget.scss */
-.coenv-fw.coenv-fw-orientation-horizontal .coenv-fw-results {
-  overflow: hidden;
-  border: none;
+/* line 298, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a {
+  color: #333;
 }
-/* line 392, ../src/coenv-faculty-widget.scss */
-.coenv-fw.coenv-fw-orientation-horizontal .coenv-fw-results .coenv-fw-member {
-  padding-top: 16.666666667%;
-  width: 16.666666667%;
+/* line 301, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a small {
+  color: #666;
+}
+/* line 305, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a:hover small {
+  color: #fff !important;
+}
+/* line 320, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p {
+  color: #444;
+}
+/* line 323, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p .coenv-fw-feedback-number {
+  color: #444;
+}
+/* line 329, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback a {
+  color: #666 !important;
+}
+/* line 332, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback a:hover {
+  color: #444 !important;
+}
+/* line 342, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-footer a {
+  color: #444;
 }

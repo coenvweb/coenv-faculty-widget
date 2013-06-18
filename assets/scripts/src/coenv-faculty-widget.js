@@ -1,10 +1,10 @@
 jQuery(function ($) {
 	'use strict';
 
-	var $widget = $('.coenv-fw');
+	//var $widget = $('.coenv-fw');
 
 	// Initialize
-	$widget.coenvfw();
+	//$widget.coenvfw();
 
 });
 
