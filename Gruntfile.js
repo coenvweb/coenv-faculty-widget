@@ -25,6 +25,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
+						'<%= paths.dev %>/components/handlebars.js/handlebars.js',
 						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget.js'
 					],
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget-admin.js': [

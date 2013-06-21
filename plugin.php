@@ -58,14 +58,15 @@ class CoEnvFacultyWidget {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_and_styles' ) );
 
 		// ajax get/save faculty member actions
-		add_action( 'wp_ajax_coenv_faculty_widget_get_cached_members', array( $this, 'ajax_get_cached_members' ) );
-		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_get_cached_members', array( $this, 'ajax_get_cached_members' ) );
 		add_action( 'wp_ajax_coenv_faculty_widget_cache_members', array( $this, 'ajax_cache_members' ) );
 		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_cache_members', array( $this, 'ajax_cache_members' ) );
 
 		// ajax get/save units actions
 		add_action( 'wp_ajax_coenv_faculty_widget_get_units', array( $this, 'ajax_get_units' ) );
 		add_action( 'wp_ajax_coenv_faculty_widget_save_units', array( $this, 'ajax_save_units' ) );
+
+		// ajax get faculty actions
+		add_action( 'wp_ajax_coenv_faculty_widget_get_faculty_filter_count', array( $this, 'ajax_get_faculty_filter_count' ) );
 
 	}
 
@@ -142,40 +143,29 @@ class CoEnvFacultyWidget {
 	}
 
 	/**
-	 * Attempts to get faculty members from transient
-	 */
-	function ajax_get_cached_members() {
-
-		// check for passed filters
-		if ( isset( $_POST['filters'] ) && !empty( $_POST['filters'] ) ) {
-
-			// combine filters into unique key
-		}
-
-		// debugging
-		delete_transient( 'coenv_faculty_widget_members' );
-
-		$members = get_transient( 'coenv_faculty_widget_members' );
-		echo json_encode( $members );
-		die();
-	}
-
-	/**
-	 * Cache faculty members from ajax call
+	 * Cache faculty members retreived via ajax
 	 */
 	function ajax_cache_members() {
-		$members = $_POST['members'];
+		extract( $_POST );
 
-		if ( !isset( $members ) || empty( $members ) ) {
-			return false;
+		// set cache length in seconds
+		$length = 60 * 60 * 1; // 1 hour
+
+		// save members as transient using posted transient key
+		if ( set_transient( $transient_key, $members, $length ) ) {
+			echo 'true';
+		} else {
+			echo 'false';
 		}
-
-		// save transient (1 hour expiration)
-		set_transient( 'coenv_faculty_widget_members', $members, 60 * 60 * 1 );
-
-		echo json_encode( get_transient( 'coenv_faculty_widget_members' ) );
 		die();
 	}
+
+
+
+
+
+
+	
 
 	/**
 	 * Attempts to get themes from transient
@@ -236,7 +226,28 @@ class CoEnvFacultyWidget {
 		die();
 	}
 
+	/**
+	 * Get filtered facult count
+	 */
+	function ajax_get_faculty_filter_count() {
+		// this only works locally for now
+
+		if ( class_exists( 'CoEnvMemberApi' ) ) {
+			global $coenv_member_api;
+
+			$args['themes'] = array( $_POST['data']['theme'] );
+			$args['units'] = array( $_POST['data']['unit'] );
+
+			$faculty = $coenv_member_api->get_faculty( $args );
+
+			echo count( $faculty );
+			die();
+		}
+
+	}
+
 }
+
 
 
 
