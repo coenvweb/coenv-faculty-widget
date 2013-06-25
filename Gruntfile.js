@@ -65,6 +65,13 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		bump: {
+			files: [
+				'<%= paths.dev %>/package.json',
+				'<%= paths.dev %>/bower.json',
+				'<%= paths.dev %>/wp-plugin.json'
+			]
+		},
 		watch: {
 			compass: {
 				files: ['<%= paths.dev %>/assets/styles/src/**/*.scss'],
@@ -104,11 +111,11 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	//grunt.loadNpmTasks('grunt-jsmin-sourcemap');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-livereload');
 	grunt.loadNpmTasks('grunt-regarde');
+	grunt.loadNpmTasks('grunt-bump');
 	grunt.loadNpmTasks('grunt-contrib-handlebars');
 
 	grunt.renameTask('regarde', 'watch');
