@@ -1,5 +1,6 @@
 {
   "name": "coenv-faculty-widget",
+  "version": "0.0.2",
   "author": "Darin Reid / elegant contraption",
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -10,6 +11,7 @@
     "grunt-contrib-connect": "~0.3.0",
     "grunt-regarde": "~0.1.1",
     "grunt-contrib-handlebars": "~0.5.9",
-    "grunt-jsmin-sourcemap": "~1.7.1"
+    "grunt-jsmin-sourcemap": "~1.7.1",
+    "grunt-bump": "0.0.6"
   }
 }
