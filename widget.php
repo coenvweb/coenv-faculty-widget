@@ -28,7 +28,11 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 		$selected_style = isset( $instance['style'] ) ? $instance['style'] : 'dark';
 
+		$widget_id = explode( '-', $this->get_field_id('widget_id') );
+		$widget_id = $widget_id[1] . '-' . $widget_id[2];
+
 		?>
+			<input type="hidden" name="<?php echo $this->get_field_name('widget_id') ?>" value="<?php echo $widget_id ?>" />
 			<div class="coenv-fw-widget-form">
 				<p>
 					<label for="<?php echo $this->get_field_name( 'theme' ) ?>"><?php _e( 'Filter by theme' ) ?></label>
@@ -67,6 +71,9 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		$instance['theme'] = $new_instance['theme'];
 		$instance['unit'] = $new_instance['unit'];
 		$instance['style'] = $new_instance['style'];
+
+		// delete transient cache on every update
+		delete_transient( $new_instance['widget_id'] );
 		 
 		return $instance;
 	}
@@ -97,7 +104,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		$unit = isset( $instance['unit'] ) ? $instance['unit'] : 'all';
 
 		// for testing: force get faculty by ajax
-		delete_transient( $widget_id );
+		//delete_transient( $widget_id );
 
 		// check for WP transient for this specific widget
 		$faculty = get_transient( $widget_id );
