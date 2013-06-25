@@ -112,10 +112,16 @@ jQuery(function ($) {
 
 	/**
 	 * Render members
+	 *
+	 * TODO: change this to use precompiled handlebars templates
 	 */
 	$.CoEnvFw.prototype._renderMembers = function () {
 
-		// load handlebars template
+		var tmpl = Handlebars.compile( $('#tmpl-members').text() );
+
+		var html = tmpl({ Members: this.members });
+
+		this.element.find('.coenv-fw-results').append( html );
 	};
 
 	/**

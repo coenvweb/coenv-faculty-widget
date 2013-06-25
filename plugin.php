@@ -153,9 +153,9 @@ class CoEnvFacultyWidget {
 
 		// save members as transient using posted transient key
 		if ( set_transient( $transient_key, $members, $length ) ) {
-			echo 'true';
+			echo 'cached';
 		} else {
-			echo 'false';
+			echo 'not cached';
 		}
 		die();
 	}

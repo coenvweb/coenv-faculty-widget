@@ -18,14 +18,27 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= paths.dev %>/assets/scripts/src/{,*/}*.js'
+				'<%= paths.dev %>/assets/scripts/src/{,*/}*.js',
+				'!<%= paths.dev %>/assets/scripts/src/member.tmpl'
 			]
 		},
 		uglify: {
 			dist: {
+//				options: {
+//					sourceMap: function ( filePath ) {
+//						//return fileName.replace( /\.js$/, '.map' );
+//						//var fileName = filePath.replace(/.*\\|\..*$/g, '');
+//						//return fileName.replace( /\.js$/, '.map' );
+//						return filePath.replace('./assets/scrits/build/', '');
+//					},
+//					sourceMapRoot: function ( path ) {
+//						return path.replace( /^build\//, '/src/' );
+//					}
+//				},
 				files: {
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
-						'<%= paths.dev %>/components/handlebars.js/handlebars.js',
+						'<%= paths.dev %>/components/handlebars.js/dist/handlebars.js',
+						'<%= paths.dev %>/assets/scripts/src/member.tmpl',
 						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget.js'
 					],
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget-admin.js': [
@@ -48,13 +61,31 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		handlebars: {
+			compile: {
+				options: {
+					namespace: 'CoEnvFw.Templates',
+					wrapped: true,
+					processName: function ( filePath ) {
+						var pieces = filePath.split('/');
+						return pieces[pieces.length - 1];
+					}
+				},
+				files: {
+					'<%= paths.dev %>/assets/scripts/src/member.tmpl': '<%= paths.dev %>/assets/scripts/src/member.tmpl.hbs'
+				}
+			}
+		},
 		watch: {
 			compass: {
 				files: ['<%= paths.dev %>/assets/styles/src/**/*.scss'],
 				tasks: ['compass']
 			},
 			srcjs: {
-				files: ['<%= paths.dev %>/assets/scripts/src/**/*.js'],
+				files: [
+					'<%= paths.dev %>/assets/scripts/src/**/*.js',
+					'<%= paths.dev %>/assets/scripts/src/**/*.hbs'
+				],
 				tasks: ['jshint', 'uglify']
 			},
 			livereload: {
@@ -84,10 +115,12 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	//grunt.loadNpmTasks('grunt-jsmin-sourcemap');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-livereload');
 	grunt.loadNpmTasks('grunt-regarde');
+	grunt.loadNpmTasks('grunt-contrib-handlebars');
 
 	grunt.renameTask('regarde', 'watch');
 
@@ -101,7 +134,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', [
 		'jshint',
 		'compass',
-		'uglify'
+		'handlebars',
+		//'jsmin-sourcemap'
+		'uglify',
 	]);
 
 };

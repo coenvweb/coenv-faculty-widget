@@ -213,13 +213,15 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 				// output faculty member handlebars template
 				// and initialize javascript actions on this widget
 			?>
-				<script id="coenv-fw-member-template" type="text/x-handlebars-template">
-					<li class="coenv-fw-member" style="background-color: {{color}};">
-						<a href="{{permalink}}" class="coenv-fw-member-inner">
-							<img class="coenv-fw-member-image" src="{{image}}">
-							<p class="coenv-fw-member-name">{{name}}</p>
-						</a>
-					</li>
+				<script id="tmpl-members" type="text/x-handlebars-template">
+					{{#each Members}}
+						<li class="coenv-fw-member" style="background-color: {{color}};">
+							<a href="{{permalink}}" class="coenv-fw-member-inner">
+								<img class="coenv-fw-member-image" src="{{image}}">
+								<p class="coenv-fw-member-name">{{name}}</p>
+							</a>
+						</li>
+					{{/each}}
 				</script>
 				<script>
 					jQuery(function () {
@@ -235,113 +237,5 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		<?php
 	}
 
-
-
-	public function _widget ( $args, $instance ) {
-		global $coenv_faculty_widget;
-
-		// assume remote widget
-		$local = false;
-
-		// if CoEnvMemberAPI class exists, we'll show the local version of the widget
-		if ( class_exists( 'CoEnvMemberAPI' ) ) {
-			global $coenv_member_api;
-			$local = true;
-
-			$faculty = $coenv_member_api->get_faculty( array(
-				'themes' => array( $instance['theme'] ),
-				'units' => array( $instance['unit'] ),
-				'test_data' => true
-			) );
-
-
-		}
-
-		$classes = array();
-		if ( isset( $instance['header_style'] ) && $instance['header_style'] == 'coenv_local' ) {
-			$classes[] = 'coenv-fw-local';
-			$header_text = 'Related Faculty';
-		} else {
-			$header_text = 'Faculty <small>UW College of the Environment</small>';
-		}
-
-		if ( isset( $instance['style'] ) && $instance['style'] == 'light' ) {
-			$classes[] = 'coenv-fw-theme-light';
-		}
-
-		?>
-
-			<?php if ( isset( $faculty ) && !empty( $faculty ) ) : ?>
-
-				<div class="coenv-fw<?php echo ' ' . implode( ' ', $classes ) ?>" data-themes="<?php echo $themes ?>" data-units="<?php echo $units ?>" data-filter-cache-key="<?php echo $filter_cache_key ?>">
-
-					<div class="coenv-fw-section-horizontal">
-
-						<header class="coenv-fw-section coenv-fw-header">
-							<h1>
-								<a href="http://coenv.dev/faculty/"><?php echo $header_text ?></a>
-							</h1>
-						</header>
-
-						<div class="coenv-fw-section coenv-fw-feedback">
-
-							<?php if ( isset( $faculty ) && !empty( $faculty ) ) : ?>
-								<p>
-									<span class="coenv-fw-feedback-number"><?php echo count( $faculty ) ?></span> <?php echo $message ?>
-								</p>
-							<?php else : ?>
-								<p class="coenv-fw-feedback-loading">
-									Loading...
-								</p>
-							<?php endif ?>
-
-						</div>
-
-					</div>
-
-					<ul class="coenv-fw-section coenv-fw-results">
-
-						<?php if ( isset( $faculty ) && !empty( $faculty ) ) : ?>
-
-							<?php foreach ( $faculty as $member ) : ?>
-
-								<li class="coenv-fw-member" style="background-color: <?php echo $member['units'][0]['color'] ?>;">
-									<a href="<?php echo $member['permalink'] ?>" class="coenv-fw-member-inner">
-										<img class="coenv-fw-member-image" src="<?php echo $member['images']['thumbnail']['url'] ?>">
-										<p class="coenv-fw-member-name"><?php echo $member['full_name'] ?></p>
-									</a>
-								</li>
-
-							<?php endforeach ?>
-
-						<?php endif ?>
-
-					</ul>
-
-					<footer class="coenv-fw-section coenv-fw-footer">
-						<a href="#"><i class="icon-faculty-grid-alt-2"></i> See all related faculty</a>
-					</footer>
-				</div>
-
-			<?php endif ?>
-
-			<?php 
-				// if CoEnvMemberAPI class exists
-				// we'll use the local widget (php only)
-				// for a speedier experience
-				if ( !class_exists( 'CoEnvMemberAPI' ) ) : 
-			?>
-		<!--
-				<script>
-					//$(function () {
-					//	var $widget = $('.coenv-fw');
-					//	$widget.coenvfw();
-					//});
-				</script>
-		-->
-			<?php endif ?>
-		<?php
-
-	}
 
 }

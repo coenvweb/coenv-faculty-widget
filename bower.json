@@ -8,5 +8,7 @@
     "normalize": "https://raw.github.com/elcontraption/normalize.css/master/normalize.scss",
     "jquery-bridget": "~1.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "handlebars.js": "~1.0.12"
+  }
 }

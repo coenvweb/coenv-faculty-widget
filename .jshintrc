@@ -22,6 +22,8 @@
     "predef": {
 			"jQuery": true,
             "$": true,
-            "define": true
+            "define": true,
+            "Handlebars": true,
+            "CoEnvFw": true
 	}	
 }
