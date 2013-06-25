@@ -1,6 +1,6 @@
 {
   "name": "coenv-faculty-widget",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Darin Reid / elegant contraption",
   "devDependencies": {
     "grunt": "~0.4.1",
