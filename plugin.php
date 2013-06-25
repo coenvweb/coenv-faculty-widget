@@ -68,6 +68,10 @@ class CoEnvFacultyWidget {
 		// ajax get faculty actions
 		add_action( 'wp_ajax_coenv_faculty_widget_get_faculty_filter_count', array( $this, 'ajax_get_faculty_filter_count' ) );
 
+		// ajax prepare feedback
+		add_action( 'wp_ajax_coenv_faculty_widget_prepare_feedback', array( $this, 'ajax_prepare_feedback' ) );
+		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_prepare_feedback', array( $this, 'ajax_prepare_feedback' ) );
+
 	}
 
 	/**
@@ -160,6 +164,56 @@ class CoEnvFacultyWidget {
 		die();
 	}
 
+	/**
+	 * Prepare feedback
+	 */
+	function prepare_feedback ( $faculty, $theme, $unit ) {
+		global $coenv_member_api;
+
+		// inclusive message used when displaying all faculty
+		$inclusiveMessage = 'College of the Environment Faculty Profiles';
+
+		// deal with singular members
+		$singularPlural = count( $faculty ) == 1 ? 'member is' : 'are';
+
+		// initialize message
+		$message = 'Faculty ' . $singularPlural . ' working ';
+
+		// check for theme and that it's not 'all'
+		if ( isset( $theme ) && $theme !== 'all' ) {
+
+			// get theme attributes
+			$themes = $coenv_member_api->get_themes(array(
+				'themes' => array( $theme )
+			));
+			$message .= 'on <a href="' . $themes[0]['url'] . '">' . $themes[0]['name'] . '</a> ';
+		}
+
+		// check for unit and that it's not 'all'
+		if ( isset( $unit ) && $unit !== 'all' ) {
+
+			// get unit attributes
+			$units = $coenv_member_api->get_units(array(
+				'units' => array( $unit )
+			));
+			$message .= 'in <a href="' . $units[0]['url'] . '">' . $units[0]['name'] . '</a>';
+		}
+
+		// if both themes and units are set to all, show inclusive message
+		if ( $theme == 'all' && $unit == 'all' ) {
+			$message = $inclusiveMessage;
+		}
+
+		return $message;
+	}
+
+	/**
+	 * Ajax accessor for prepare_feedback()
+	 */
+	function ajax_prepare_feedback() {
+		echo $this->prepare_feedback( $_POST['faculty'], $_POST['theme'], $_POST['unit'] );
+		die();
+	}
 
 
 

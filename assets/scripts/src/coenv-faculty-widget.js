@@ -36,10 +36,12 @@ jQuery(function ($) {
 		this.filters = this.options.filters;
 
 		// get filtered faculty via ajax call
-		this._getFaculty().then( function () {
+		this._getMembers().then( function () {
 
 			// render members to widget
 			_this._renderMembers();
+
+			_this._renderFeedback();
 
 			// cache members
 			_this._cacheMembers();
@@ -48,10 +50,10 @@ jQuery(function ($) {
 	};
 
 	/**
-	 * Get faculty
-	 * Ajax call to CoEnv faculty API to get filtered faculty
+	 * Get members
+	 * Ajax call to CoEnv faculty API to get filtered faculty members
 	 */
-	$.CoEnvFw.prototype._getFaculty = function () {
+	$.CoEnvFw.prototype._getMembers = function () {
 
 		var dfd = new $.Deferred(),
 				_this = this,
@@ -125,6 +127,39 @@ jQuery(function ($) {
 	};
 
 	/**
+	 * Render feedback
+	 */
+	$.CoEnvFw.prototype._renderFeedback = function () {
+
+		var _this = this,
+				$feedback = this.element.find('.coenv-fw-feedback'),
+				$number = $feedback.find('.coenv-fw-feedback-number'),
+				$message = $feedback.find('.coenv-fw-feedback-message'),
+				feedback;
+
+		var data = {
+			action: 'coenv_faculty_widget_prepare_feedback',
+			faculty: this.members,
+			theme: this.filters.themes[0],
+			unit: this.filters.units[0]
+		};
+
+		// prepare feedback
+		$.ajax({
+			url: this.options.ajaxurl,
+			data: data,
+			type: 'POST',
+			success: function ( response ) {
+				$number.text( _this.members.length );
+				$message.html( response );
+			},
+			error: function ( jqXHR, textStatus ) {
+				console.log( textStatus );
+			}
+		});
+	};
+
+	/**
 	 * Cache members
 	 * Save members as WP transient
 	 */
@@ -143,7 +178,7 @@ jQuery(function ($) {
 			data: data,
 			type: 'POST',
 			success: function ( response ) {
-				console.log( response );
+				//console.log( response );
 			},
 			error: function ( jqXHR, textStatus ) {
 				_this._failed( textStatus );
@@ -157,93 +192,6 @@ jQuery(function ($) {
 	 */
 	$.CoEnvFw.prototype._failed = function ( msg ) {
 		console.log( msg );
-	};
-
-
-
-	/**
-	 * Get members
-	 */
-	$.CoEnvFw.prototype._getMembers = function () {
-
-		var dfd = new $.Deferred(),
-				_this = this;
-
-		var data = {
-			action: 'coenv_faculty_widget_get_cached_members'
-		};
-
-		// attempt to get cached members from WP transient
-		$.post( this.options.ajaxurl, data, function ( response ) {
-
-			if ( response !== 'false' ) {
-
-				// transient exists
-				_this.members = $.parseJSON( response );
-
-				dfd.resolve();
-			} else {
-
-				// transient doesn't exist, get members via ajax call
-				_this._remoteGetMembers().then( function () {
-					dfd.resolve();
-				} );
-			}
-		} );
-
-		return dfd.promise();
-	};
-
-	/**
-	 * Render members
-	 */
-	$.CoEnvFw.prototype.__renderMembers = function () {
-
-		var members = this.members,
-				$msg = '<p><span class="' + this.options.feedbackNumberClass + '">' + members.length + '</span> faculty working on <a href="#">Environmental Chemistry</a></p>',
-				$items = [],
-				_this = this,
-				count = 0;
-
-		// add message to feedback area
-		this.$feedback.html( $msg );
-
-		$.each( members, function () {
-
-			if ( count === 25 ) {
-				return;
-			}
-
-			var member = this,
-					$item = $('<li></li>'),
-					$link = $('<a></a>'),
-					$img = $('<img />'),
-					$name = $('<p></p>');
-
-			$item.addClass( _this.options.memberClass );
-			$item.attr( 'style', 'background-color: ' + member.color + ';' );
-
-			$link.addClass( _this.options.memberInnerClass );
-			$link.attr( 'href', member.permalink );
-
-			$img.addClass( _this.options.memberImageClass );
-			$img.attr( 'src', member.image );
-			$img.appendTo( $link );
-
-			$name.addClass( _this.options.memberNameClass );
-			$name.text( member.full_name );
-			$name.appendTo( $link );
-
-			$link.appendTo( $item );
-
-			$items.push( $item );
-
-			count++;
-
-		} );
-
-		this.$resultsList.append( $items );
-
 	};
 
 	/**

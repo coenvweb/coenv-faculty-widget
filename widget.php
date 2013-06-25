@@ -71,46 +71,6 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		return $instance;
 	}
 
-	private function prepare_feedback ( $faculty, $theme, $unit ) {
-		global $coenv_member_api;
-
-		// inclusive message used when displaying all faculty
-		$inclusiveMessage = 'College of the Environment Faculty Profiles';
-
-		// deal with singular members
-		$singularPlural = count( $faculty ) == 1 ? 'member is' : 'are';
-
-		// initialize message
-		$message = 'Faculty ' . $singularPlural . ' working ';
-
-		// check for theme and that it's not 'all'
-		if ( isset( $theme ) && $theme !== 'all' ) {
-
-			// get theme attributes
-			$themes = $coenv_member_api->get_themes(array(
-				'themes' => array( $theme )
-			));
-			$message .= 'on <a href="' . $themes[0]['url'] . '">' . $themes[0]['name'] . '</a> ';
-		}
-
-		// check for unit and that it's not 'all'
-		if ( isset( $unit ) && $unit !== 'all' ) {
-
-			// get unit attributes
-			$units = $coenv_member_api->get_units(array(
-				'units' => array( $unit )
-			));
-			$message .= 'in <a href="' . $units[0]['url'] . '">' . $units[0]['name'] . '</a>';
-		}
-
-		// if both themes and units are set to all, show inclusive message
-		if ( $theme == 'all' && $unit == 'all' ) {
-			$message = $inclusiveMessage;
-		}
-
-		return $message;
-	}
-
 	/**
 	 * Display the widget
 	 *
@@ -118,6 +78,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 	 * @param $instance {array}
 	 */
 	public function widget ( $args, $instance ) {
+		global $coenv_faculty_widget;
 		extract( $args );
 
 		$widget_classes = array();
@@ -149,7 +110,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 			$header_text = 'Related Faculty';
 
 			// prepare feedback message
-			$message = $this->prepare_feedback( $faculty, $theme, $unit );
+			$message = $coenv_faculty_widget->prepare_feedback( $faculty, $theme, $unit );
 
 		} else {
 			$classes[] = 'coenv-fw-external';
@@ -179,11 +140,13 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 				<div class="coenv-fw-section coenv-fw-feedback">
 					<?php if ( !empty( $faculty ) ) : ?>
 						<p>
-							<span class="coenv-fw-feedback-number"><?php echo count( $faculty ) ?></span> <?php echo $message ?>
+							<div class="coenv-fw-feedback-number"><?php echo count( $faculty ) ?></div> 
+							<p class="coenv-fw-feedback-message"><?php echo $message ?></p>
 						</p>
 					<?php else : ?>
 						<p class="coenv-fw-feedback-loading">
-							Loading...
+							<div class="coenv-fw-feedback-number"></div>
+							<p class="coenv-fw-feedback-message">Loading...</p>
 						</p>
 					<?php endif ?>
 				</div>

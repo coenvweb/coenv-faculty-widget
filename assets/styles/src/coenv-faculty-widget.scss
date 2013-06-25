@@ -113,34 +113,32 @@
 	}
 
 	.coenv-fw-feedback {
+		@extend .coenv-fw-clearfix;
 		padding: 8px 16px;
+		font-size: 12px !important;
+		line-height: 16px !important;
+		font-weight: 600;
+		color: #ccc;
 
 		.no-js & {
 			display: none;
 		}
 
 		p {
-			@extend .coenv-fw-clearfix;
-			margin: 0 !important;
-			font-size: 12px !important;
-			line-height: 16px !important;
-			font-weight: 600;
-			color: #ccc;
+			overflow: hidden;
+			margin: 0;
+			color: #aaa;
+		}
 
-			.coenv-fw-feedback-number {
-				float: left;
-				display: block;
-				margin-right: 8px;
-				font-size: 30px;
-				line-height: 30px;
-				color: #fff;
-			}
-
-			&.coenv-fw-feedback-loading {
-				text-align: center;
-			}
-
-		} // p
+		.coenv-fw-feedback-number {
+			float: left;
+			display: block;
+			margin: 0;
+			padding-right: 8px;
+			font-size: 36px !important;
+			line-height: 30px !important;
+			color: #fff;
+		}
 
 		a {
 			text-decoration: none;
