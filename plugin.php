@@ -2,7 +2,7 @@
 /*
 Plugin Name: CoEnv Faculty Widget
 Description: University of Washington College of the Environment Faculty Widget
-Version: 1.0
+Version: 1.1
 Author: <a href="http://elcontraption.com/">Elegant Contraption</a>
 */
 
@@ -22,9 +22,6 @@ require 'widget.php';
 class CoEnvFacultyWidget {
 
 	function __construct() {
-
-		// Plugin version
-		if ( !defined('COENVFW_VERSION') ) define( 'COENVFW_VERSION', '0.1' );
 
 		// Plugin directory
 		if ( !defined('COENVFW_DIRNAME') ) define( 'COENVFW_DIRNAME', plugin_dir_url( __FILE__ ) );
