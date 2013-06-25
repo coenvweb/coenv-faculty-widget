@@ -1,6 +1,5 @@
 {
-  "name": "elcontraption-starter",
-  "version": "0.1.0",
+  "name": "coenv-faculty-widget",
   "author": "Darin Reid / elegant contraption",
   "devDependencies": {
     "grunt": "~0.4.1",

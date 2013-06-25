@@ -2,12 +2,15 @@
 /*
 Plugin Name: CoEnv Faculty Widget
 Description: University of Washington College of the Environment Faculty Widget
-Version: 0.1
+Version: 1.0
 Author: <a href="http://elcontraption.com/">Darin Reid</a>
 */
 
 global $coenv_faculty_widget;
 $coenv_faculty_widget = new CoEnvFacultyWidget();
+
+require 'plugin-updates/plugin-update-checker.php';
+
 
 require 'widget.php';
 
