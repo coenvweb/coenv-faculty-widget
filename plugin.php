@@ -61,13 +61,6 @@ class CoEnvFacultyWidget {
 		add_action( 'wp_ajax_coenv_faculty_widget_cache_members', array( $this, 'ajax_cache_members' ) );
 		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_cache_members', array( $this, 'ajax_cache_members' ) );
 
-		// ajax get/save units actions
-		add_action( 'wp_ajax_coenv_faculty_widget_get_units', array( $this, 'ajax_get_units' ) );
-		add_action( 'wp_ajax_coenv_faculty_widget_save_units', array( $this, 'ajax_save_units' ) );
-
-		// ajax get faculty actions
-		add_action( 'wp_ajax_coenv_faculty_widget_get_faculty_filter_count', array( $this, 'ajax_get_faculty_filter_count' ) );
-
 		// ajax prepare feedback
 		add_action( 'wp_ajax_coenv_faculty_widget_prepare_feedback', array( $this, 'ajax_prepare_feedback' ) );
 		add_action( 'wp_ajax_nopriv_coenv_faculty_widget_prepare_feedback', array( $this, 'ajax_prepare_feedback' ) );
@@ -168,7 +161,6 @@ class CoEnvFacultyWidget {
 	 * Prepare feedback
 	 */
 	function prepare_feedback ( $faculty, $theme, $unit ) {
-		global $coenv_member_api;
 
 		// inclusive message used when displaying all faculty
 		$inclusiveMessage = 'College of the Environment Faculty Profiles';
@@ -183,7 +175,7 @@ class CoEnvFacultyWidget {
 		if ( isset( $theme ) && $theme !== 'all' ) {
 
 			// get theme attributes
-			$themes = $coenv_member_api->get_themes(array(
+			$themes = $this->get_themes(array(
 				'themes' => array( $theme )
 			));
 			$message .= 'on <a href="' . $themes[0]['url'] . '">' . $themes[0]['name'] . '</a> ';
@@ -193,7 +185,7 @@ class CoEnvFacultyWidget {
 		if ( isset( $unit ) && $unit !== 'all' ) {
 
 			// get unit attributes
-			$units = $coenv_member_api->get_units(array(
+			$units = $this->get_units(array(
 				'units' => array( $unit )
 			));
 			$message .= 'in <a href="' . $units[0]['url'] . '">' . $units[0]['name'] . '</a>';
@@ -214,12 +206,6 @@ class CoEnvFacultyWidget {
 		echo $this->prepare_feedback( $_POST['faculty'], $_POST['theme'], $_POST['unit'] );
 		die();
 	}
-
-
-
-
-
-	
 
 	/**
 	 * Attempts to get themes from transient
@@ -251,53 +237,6 @@ class CoEnvFacultyWidget {
 
 		//$units = get_transient( 'coenv_faculty_widget_units' );
 		return $units;
-	}
-
-	/**
-	 * Ajax version of get_units()
-	 */
-	function ajax_get_units() {
-		$units = get_units();
-		echo json_encode( $units );
-		die();
-	}
-
-	/**
-	 * Save units from ajax call
-	 */
-	function ajax_save_units() {
-
-		$units = $_POST['data'];
-
-		if ( !isset( $units ) || empty( $units ) ) {
-			return false;
-		}
-
-		// save transient (1 hour expiration)
-		set_transient( 'coenv_faculty_widget_units', $units, 60 * 60 * 1 );
-
-		echo json_encode( get_transient('coenv_faculty_widget_units') );
-		die();
-	}
-
-	/**
-	 * Get filtered facult count
-	 */
-	function ajax_get_faculty_filter_count() {
-		// this only works locally for now
-
-		if ( class_exists( 'CoEnvMemberApi' ) ) {
-			global $coenv_member_api;
-
-			$args['themes'] = array( $_POST['data']['theme'] );
-			$args['units'] = array( $_POST['data']['unit'] );
-
-			$faculty = $coenv_member_api->get_faculty( $args );
-
-			echo count( $faculty );
-			die();
-		}
-
 	}
 
 }
