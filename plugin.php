@@ -135,7 +135,10 @@ class CoEnvFacultyWidget {
 		// styles
 
 		// scripts
-		wp_register_script( 'coenv-faculty-widget-admin', COENVFW_DIRNAME . '/assets/scripts/build/coenv-faculty-widget-admin.js', array( 'jquery' ) );
+		wp_register_script( 'coenv-faculty-widget', COENVFW_DIRNAME . '/assets/scripts/build/coenv-faculty-widget.js', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'coenv-faculty-widget' );
+
+		wp_register_script( 'coenv-faculty-widget-admin', COENVFW_DIRNAME . '/assets/scripts/build/coenv-faculty-widget-admin.js', array( 'jquery', 'coenv-faculty-widget' ) );
 		wp_enqueue_script( 'coenv-faculty-widget-admin' );
 
 		wp_localize_script( 'coenv-faculty-widget-admin', 'coenvfw', $this->js_vars() );
