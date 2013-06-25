@@ -24,17 +24,6 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			dist: {
-//				options: {
-//					sourceMap: function ( filePath ) {
-//						//return fileName.replace( /\.js$/, '.map' );
-//						//var fileName = filePath.replace(/.*\\|\..*$/g, '');
-//						//return fileName.replace( /\.js$/, '.map' );
-//						return filePath.replace('./assets/scrits/build/', '');
-//					},
-//					sourceMapRoot: function ( path ) {
-//						return path.replace( /^build\//, '/src/' );
-//					}
-//				},
 				files: {
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
 						'<%= paths.dev %>/components/handlebars.js/dist/handlebars.js',
@@ -135,7 +124,6 @@ module.exports = function(grunt) {
 		'jshint',
 		'compass',
 		'handlebars',
-		//'jsmin-sourcemap'
 		'uglify',
 	]);
 

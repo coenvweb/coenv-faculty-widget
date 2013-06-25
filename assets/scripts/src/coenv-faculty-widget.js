@@ -96,17 +96,25 @@ jQuery(function ($) {
 	 */
 	$.CoEnvFw.prototype._prepareMemberObjects = function ( members ) {
 
-		var dataMembers = [];
+		var dataMembers = [],
+				count = 0;
 
 		// reduce members
 		// limited amount of data allowed with POST request
+		// also, limit to 25 max
 		$.each( members, function () {
+
+			if ( count === 25 ) {
+				return;
+			}
+
 			dataMembers.push({
 				permalink: this.permalink,
 				name: this.full_name,
 				image: this.images.thumbnail.url,
 				color: this.units[0].color
 			});
+			count++;
 		} );
 
 		return dataMembers;

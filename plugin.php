@@ -10,6 +10,8 @@ global $coenv_faculty_widget;
 $coenv_faculty_widget = new CoEnvFacultyWidget();
 
 // http://w-shadow.com/blog/2010/09/02/automatic-updates-for-any-plugin/
+// uses version number above and in wp-plugin.json to determine
+// if a new version is available. Both must be updated, match, and be higher than the previous version.
 require 'plugin-updates/plugin-update-checker.php';
 $update_checker = new PluginUpdateChecker(
 	'https://raw.github.com/elcontraption/coenv-faculty-widget/master/wp-plugin.json',
