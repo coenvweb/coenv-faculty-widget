@@ -2,8 +2,8 @@
 	"name": "CoEnv Faculty Widget",
 	"slug": "coenv-faculty-widget",
 	"download_url": "https://github.com/elcontraption/coenv-faculty-widget.git",
-	"version": "1.0",
-	"author": "Darin Reid / Elegant Contraption",
+	"version": "1.1",
+	"author": "Elegant Contraption",
 	"sections": {
 		"description": "University of Washington College of the Environment Faculty Widget"
 	}
