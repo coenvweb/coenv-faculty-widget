@@ -179,7 +179,7 @@ class CoEnvFacultyWidget {
 		$inclusiveMessage = 'College of the Environment Faculty Profiles';
 
 		// deal with singular members
-		$singularPlural = count( $faculty['results'] ) == 1 ? 'member is' : 'are';
+		$singularPlural = $faculty['total'] == 1 ? 'member is' : 'are';
 
 		// initialize message
 		$message = 'Faculty ' . $singularPlural . ' working ';
@@ -201,6 +201,7 @@ class CoEnvFacultyWidget {
 			$units = $this->get_units(array(
 				'units' => array( $unit )
 			));
+
 			$message .= 'in <a href="' . $units[0]['url'] . '">' . $units[0]['name'] . '</a>';
 		}
 
@@ -223,32 +224,24 @@ class CoEnvFacultyWidget {
 	/**
 	 * Attempts to get themes from transient
 	 */
-	function get_themes() {
+	function get_themes( $args = array() ) {
 
 		if ( class_exists( 'CoEnvMemberApi' ) ) {
 			global $coenv_member_api;
-			$themes = $coenv_member_api->get_themes();
+			$themes = $coenv_member_api->get_themes( $args );
 		}
-
-		// need to work with ajax to get themes if this is a remote instance of the widget
-
-		//$units = get_transient( 'coenv_faculty_widget_themes' );
 		return $themes;
 	}
 
 	/**
 	 * Attempts to get units from transient
 	 */
-	function get_units() {
+	function get_units( $args = array() ) {
 
 		if ( class_exists( 'CoEnvMemberApi' ) ) {
 			global $coenv_member_api;
-			$units = $coenv_member_api->get_units();
+			$units = $coenv_member_api->get_units( $args );
 		}
-
-		// need to work with ajax to get units if this is a remote instance of the widget
-
-		//$units = get_transient( 'coenv_faculty_widget_units' );
 		return $units;
 	}
 
