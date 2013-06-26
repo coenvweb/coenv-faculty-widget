@@ -113,11 +113,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		$faculty = get_transient( $widget_id );
 
 		// prepare related faculty link with themes and units
-		$related_faculty_link = $coenv_faculty_widget->faculty_url;
-
-		if ( !empty( $faculty['results'] ) ) {
-			$related_faculty_link .= '#theme-' . $theme . '&unit-' . $unit;
-		}
+		$related_faculty_link = $coenv_faculty_widget->faculty_url . '#theme-' . $theme . '&unit-' . $unit;
 
 		// compile widget classes depending on local/remote widget location
 		if ( $local ) {
@@ -163,7 +159,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 					<?php else : ?>
 						<p class="coenv-fw-feedback-loading">
 							<div class="coenv-fw-feedback-number"></div>
-							<p class="coenv-fw-feedback-message">No related faculty found.</p>
+							<p class="coenv-fw-feedback-message">Loading...</p>
 						</p>
 					<?php endif ?>
 				</div>

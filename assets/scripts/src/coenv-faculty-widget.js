@@ -166,9 +166,6 @@ jQuery(function ($) {
 			success: function ( response ) {
 				$number.text( _this.members.total );
 				$message.html( response );
-
-				// hook up coenv-fw-related-faculty-link's
-				_this.element.find('.coenv-fw-related-faculty-link').attr('href', _this.options.facultyUrl + '#theme-' + _this.filters.themes[0] + '&unit-' + _this.filters.units[0] );
 			},
 			error: function ( jqXHR, textStatus ) {
 				console.log( textStatus );
