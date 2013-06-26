@@ -34,8 +34,7 @@ class CoEnvFacultyWidget {
 		// Plugin noncename (for form submission)
 		if ( !defined('COENVFW_NONCENAME') ) define( 'COENVFW_NONCENAME', 'coenvfw' );
 
-
-		// WORKING ON THIS...
+		$this->faculty_url = 'http://coenvdev.com/faculty/';
 		$this->faculty_endpoint = 'http://coenvdev.com/faculty/themes/all/units/all/json';
 		$this->units_endpoint = 'http://coenvdev.com/faculty/units/json';
 		$this->themes_endpoint = 'http://coenvdev.com/faculty/themes/json';
@@ -101,13 +100,12 @@ class CoEnvFacultyWidget {
 	 */
 	function scripts_and_styles() {
 		
-		// styles
+		// styles (enqueued in widget function)
 		wp_register_style( 'coenv-faculty-widget', COENVFW_DIRNAME . '/assets/styles/build/coenv-faculty-widget.css'  );
 		wp_enqueue_style( 'coenv-faculty-widget' );
 
-		// scripts
+		// scripts (enqueued in widget function)
 		wp_register_script( 'coenv-faculty-widget', COENVFW_DIRNAME . '/assets/scripts/build/coenv-faculty-widget.js', array( 'jquery' ), '', true );
-		wp_enqueue_script( 'coenv-faculty-widget' );
 
 		// set up plugin js vars
 		wp_localize_script( 'coenv-faculty-widget', 'coenvfw', $this->js_vars() );
@@ -119,6 +117,7 @@ class CoEnvFacultyWidget {
 	function js_vars() {
 		return array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'facultyUrl' => $this->faculty_url,
 			'facultyEndpoint' => $this->faculty_endpoint,
 			'unitsEndpoint' => $this->units_endpoint,
 			'themesEndpoint' => $this->themes_endpoint
@@ -180,7 +179,7 @@ class CoEnvFacultyWidget {
 		$inclusiveMessage = 'College of the Environment Faculty Profiles';
 
 		// deal with singular members
-		$singularPlural = count( $faculty ) == 1 ? 'member is' : 'are';
+		$singularPlural = count( $faculty['results'] ) == 1 ? 'member is' : 'are';
 
 		// initialize message
 		$message = 'Faculty ' . $singularPlural . ' working ';

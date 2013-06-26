@@ -43,6 +43,9 @@ jQuery(function ($) {
 
 			_this._renderFeedback();
 
+			// hook up coenv-fw-related-faculty-link's
+			//_this.element.find('.coenv-fw-related-faculty-link').attr('href', '...');
+
 			// cache members
 			_this._cacheMembers();
 		} );
@@ -117,7 +120,10 @@ jQuery(function ($) {
 			count++;
 		} );
 
-		return dataMembers;
+		return {
+			total: members.length,
+			results: dataMembers
+		};
 	};
 
 	/**
@@ -126,10 +132,11 @@ jQuery(function ($) {
 	 * TODO: change this to use precompiled handlebars templates
 	 */
 	$.CoEnvFw.prototype._renderMembers = function () {
+		var tmpl,
+				html;
 
-		var tmpl = Handlebars.compile( $('#tmpl-members').text() );
-
-		var html = tmpl({ Members: this.members });
+		tmpl = Handlebars.compile( $('#tmpl-members').text() );
+		html = tmpl({ Members: this.members.results });
 
 		this.element.find('.coenv-fw-results').append( html );
 	};
@@ -158,7 +165,7 @@ jQuery(function ($) {
 			data: data,
 			type: 'POST',
 			success: function ( response ) {
-				$number.text( _this.members.length );
+				$number.text( _this.members.total );
 				$message.html( response );
 			},
 			error: function ( jqXHR, textStatus ) {
@@ -186,7 +193,7 @@ jQuery(function ($) {
 			data: data,
 			type: 'POST',
 			success: function ( response ) {
-				//console.log( response );
+				console.log( response );
 			},
 			error: function ( jqXHR, textStatus ) {
 				_this._failed( textStatus );

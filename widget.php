@@ -88,6 +88,9 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		global $coenv_faculty_widget;
 		extract( $args );
 
+		// enqueue scripts
+		wp_enqueue_script( 'coenv-faculty-widget' );
+
 		$widget_classes = array();
 
 		// assume remote widget (used on external websites only)
@@ -108,6 +111,13 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 		// check for WP transient for this specific widget
 		$faculty = get_transient( $widget_id );
+
+		// prepare related faculty link with themes and units
+		$related_faculty_link = $coenv_faculty_widget->faculty_url;
+
+		if ( !empty( $faculty['results'] ) ) {
+			$related_faculty_link .= '#theme-' . $theme . '&unit-' . $unit;
+		}
 
 		// compile widget classes depending on local/remote widget location
 		if ( $local ) {
@@ -140,27 +150,27 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 
 				<header class="coenv-fw-section coenv-fw-header">
 					<h1>
-						<a href="http://coenv.dev/faculty/"><?php echo $header_text ?></a>
+						<a class="coenv-fw-related-faculty-link" href="<?php echo $related_faculty_link ?>"><?php echo $header_text ?></a>
 					</h1>
 				</header>
 
 				<div class="coenv-fw-section coenv-fw-feedback">
 					<?php if ( !empty( $faculty ) ) : ?>
 						<p>
-							<div class="coenv-fw-feedback-number"><?php echo count( $faculty ) ?></div> 
+							<div class="coenv-fw-feedback-number"><?php echo $faculty['total'] ?></div> 
 							<p class="coenv-fw-feedback-message"><?php echo $message ?></p>
 						</p>
 					<?php else : ?>
 						<p class="coenv-fw-feedback-loading">
 							<div class="coenv-fw-feedback-number"></div>
-							<p class="coenv-fw-feedback-message">Loading...</p>
+							<p class="coenv-fw-feedback-message">No related faculty found.</p>
 						</p>
 					<?php endif ?>
 				</div>
 
 				<ul class="coenv-fw-section coenv-fw-results">
-					<?php if ( !empty( $faculty ) ) : ?>
-						<?php foreach ( $faculty as $member ) : ?>
+					<?php if ( !empty( $faculty['results'] ) ) : ?>
+						<?php foreach ( $faculty['results'] as $member ) : ?>
 							<li class="coenv-fw-member" style="background-color: <?php echo $member['color'] ?>;">
 								<a href="<?php echo $member['permalink'] ?>" class="coenv-fw-member-inner">
 									<img class="coenv-fw-member-image" src="<?php echo $member['image'] ?>">
@@ -172,13 +182,17 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 				</ul>
 
 				<footer class="coenv-fw-section coenv-fw-footer">
-					<a href="#"><i class="icon-faculty-grid-alt-2"></i> See all related faculty</a>
+					<?php if ( !empty( $faculty['results'] ) ) : ?>
+						<a class="coenv-fw-related-faculty-link" href="<?php echo $related_faculty_link ?>"><i class="icon-faculty-grid-alt-2"></i> See all related faculty</a>
+					<?php else : ?>
+						<a class="coenv-fw-related-faculty-link" href="<?php echo $related_faculty_link ?>"><i class="icon-faculty-grid-alt-2"></i> See all faculty</a>
+					<?php endif ?>
 				</footer>
 
 			</div>
 
 			<?php 
-				if ( empty( $faculty ) ) : 
+				if ( empty( $faculty['results'] ) ) : 
 				// transient does not exist: get faculty via ajax
 				// output faculty member handlebars template
 				// and initialize javascript actions on this widget
