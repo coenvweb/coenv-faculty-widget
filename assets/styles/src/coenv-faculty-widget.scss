@@ -316,15 +316,15 @@
 	}
 
 	.coenv-fw-feedback {
+		color: #444 !important;
 
 		p {
-			color: #444;
+			color: #444 !important;
+		}
 
-			.coenv-fw-feedback-number {
-				color: #333;
-			}
-
-		} // p
+		.coenv-fw-feedback-number {
+			color: #333 !important;
+		}
 
 		a {
 			color: #666 !important;

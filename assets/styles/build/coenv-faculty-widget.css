@@ -325,13 +325,17 @@ you can use the generic selector below, but it's slower:
 .coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a:hover small {
   color: #fff !important;
 }
-/* line 320, ../src/coenv-faculty-widget.scss */
-.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p {
-  color: #444;
+/* line 318, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback {
+  color: #444 !important;
 }
-/* line 323, ../src/coenv-faculty-widget.scss */
-.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p .coenv-fw-feedback-number {
-  color: #333;
+/* line 321, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p {
+  color: #444 !important;
+}
+/* line 325, ../src/coenv-faculty-widget.scss */
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback .coenv-fw-feedback-number {
+  color: #333 !important;
 }
 /* line 329, ../src/coenv-faculty-widget.scss */
 .coenv-fw.coenv-fw-theme-light .coenv-fw-feedback a {
