@@ -88,6 +88,8 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 		global $coenv_faculty_widget;
 		extract( $args );
 
+		$widget_id = isset( $widget_id ) ? $widget_id : $instance['id'];
+
 		// enqueue scripts
 		wp_enqueue_script( 'coenv-faculty-widget' );
 
