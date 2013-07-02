@@ -1,9 +1,0 @@
-# ----------------------------------------------------------------------
-# Authentication
-# ----------------------------------------------------------------------
-# AuthType Basic
-# AuthName "Protected Area"
-# AuthUserFile /path/to/.htpasswd
-# Require valid-user
-# Allow from 127.0.0.1
-# Satisfy Any
