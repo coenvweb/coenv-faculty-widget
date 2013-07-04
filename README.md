@@ -1,13 +1,10 @@
 # CoEnv Faculty Widget
 
-The public repository for the UW College of the Environment Faculty WordPress widget plugin
+A WordPress widget plugin to display College of the Environment faculty filtered by research theme or school/department. Links back to the main [College of the Environment Faculty Directory](http://coenvdev.com/faculty/).
 
 Author: Darin Reid / http://elcontraption.com/
 
 * * *
-
-## A WordPress widget plugin
-Install this WordPress plugin to add a sidebar widget for showing College of the Environment faculty, filtered by research theme or school/department.
 
 ## Installation and use
 As this plugin is not hosted in the WordPress plugins directory, you'll have to install it manually.
