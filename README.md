@@ -18,3 +18,6 @@ As this plugin is not hosted in the WordPress plugins directory, you'll have to 
 1. Assign the widget to pages on the widgets admin screen.
 1. Select the appropriate filters and widget style (light or dark).
 1. Save the widget and make sure it works on the public-facing page.
+
+## Updates
+The plugin will check for updates periodically. When an update is available, you will see a message on the plugins admin screen. Click "update" to run the plugin updater.
