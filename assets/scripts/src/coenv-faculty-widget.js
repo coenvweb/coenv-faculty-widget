@@ -168,7 +168,7 @@ jQuery(function ($) {
 				$message.html( response );
 			},
 			error: function ( jqXHR, textStatus ) {
-				console.log( textStatus );
+				//console.log( textStatus );
 			}
 		});
 	};
@@ -192,7 +192,7 @@ jQuery(function ($) {
 			data: data,
 			type: 'POST',
 			success: function ( response ) {
-				console.log( response );
+				//console.log( response );
 			},
 			error: function ( jqXHR, textStatus ) {
 				_this._failed( textStatus );
@@ -205,7 +205,7 @@ jQuery(function ($) {
 	 * Failed message
 	 */
 	$.CoEnvFw.prototype._failed = function ( msg ) {
-		console.log( msg );
+		//console.log( msg );
 	};
 
 	/**
