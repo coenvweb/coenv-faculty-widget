@@ -1,11 +1,16 @@
-# OS generated files
+# system files
+*~
 *.DS_Store
+*.svn
+*.cvs
+*.bak
+*.swp
+*[Tt]humbs.db
+*.Trashes
 
-# Editor generated files
+# editor generated
 *.sublime-project
 *.sublime-workspace
 
-# Development files
-.sass-cache
-node_modules
-components
+# preprocessors
+*.sass-cache
