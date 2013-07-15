@@ -5,6 +5,8 @@ var folderMount = function folderMount(connect, point) {
 	return connect.static(path.resolve(point));
 };
 
+var rsyncConfig = require('./rsync-config.json');
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({
@@ -99,6 +101,15 @@ module.exports = function(grunt) {
 					}
 				}
 			}
+		},
+		rsync: {
+			dev: {
+				src: './',
+				dest: rsyncConfig.dest,
+				host: rsyncConfig.host,
+				recursive: true,
+				syncDest: true
+			}
 		}
 	});
 
@@ -109,6 +120,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-livereload');
 	grunt.loadNpmTasks('grunt-regarde');
 	grunt.loadNpmTasks('grunt-contrib-handlebars');
+	grunt.loadNpmTasks('grunt-rsync');
 
 	grunt.renameTask('regarde', 'watch');
 
@@ -117,6 +129,11 @@ module.exports = function(grunt) {
 		'livereload-start',
 		'connect:livereload',
 		'watch'
+	]);
+
+	grunt.registerTask('deploy', [
+		'default',
+		'rsync'
 	]);
 
 	grunt.registerTask('default', [

@@ -14,3 +14,9 @@
 
 # preprocessors
 *.sass-cache
+
+# development
+*config.rb
+*node_modules
+*components
+rsync-config.json
