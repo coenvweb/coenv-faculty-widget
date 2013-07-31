@@ -171,7 +171,7 @@ class CoEnv_Widget_Faculty extends WP_Widget {
 						<?php foreach ( $faculty['results'] as $member ) : ?>
 							<li class="coenv-fw-member" style="background-color: <?php echo $member['color'] ?>;">
 								<a href="<?php echo $member['permalink'] ?>" class="coenv-fw-member-inner">
-									<img class="coenv-fw-member-image" src="<?php echo $member['image'] ?>">
+									<img class="coenv-fw-member-image" src="<?php echo $member['image'] ?>" alt="<?php echo $member['name'] ?>" />
 									<p class="coenv-fw-member-name"><?php echo $member['name'] ?></p>
 								</a>
 							</li>

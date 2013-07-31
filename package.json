@@ -12,6 +12,6 @@
     "grunt-regarde": "~0.1.1",
     "grunt-contrib-handlebars": "~0.5.9",
     "grunt-jsmin-sourcemap": "~1.7.1",
-    "grunt-rsync": "~0.2.0"
+    "grunt-rsync": "~0.1.1"
   }
 }

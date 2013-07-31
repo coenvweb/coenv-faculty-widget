@@ -119,8 +119,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-livereload');
 	grunt.loadNpmTasks('grunt-regarde');
-	grunt.loadNpmTasks('grunt-contrib-handlebars');
 	grunt.loadNpmTasks('grunt-rsync');
+	grunt.loadNpmTasks('grunt-contrib-handlebars');
 
 	grunt.renameTask('regarde', 'watch');
 
