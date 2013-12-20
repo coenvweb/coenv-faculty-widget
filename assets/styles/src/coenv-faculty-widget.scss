@@ -1,16 +1,14 @@
  /*	CoEnv Faculty Widget
 
-		Author: Darin Reid / http://elcontraption.com/
+	Author: Darin Reid / http://elcontraption.com/
 
-		This is the development SASS stylesheet.
-		Requires Compass.
-		======================================================================== */
+	This is the development SASS stylesheet.
+	======================================================================== */
 
-@import 'compass';
 @import 'icomoon.scss';
 
 /*	Useful extensions
-		======================================================================== */
+	======================================================================== */
 
 .coenv-fw-antialiased {
     -webkit-font-smoothing: antialiased;
@@ -202,7 +200,7 @@
 				right: 0;
 				left: 0;
 				width: 100%;
-				@include transition( all .1s ease );
+				transition: all .1s ease;
 				background: inherit;
 				color: #fff !important;
 				text-decoration: none;
@@ -214,7 +212,7 @@
 					margin: 0;
 					padding: 0;
 					max-width: 100% !important;
-					@include border-radius(0);
+					border-radius: 0;
 				}
 
 				.coenv-fw-member-name {

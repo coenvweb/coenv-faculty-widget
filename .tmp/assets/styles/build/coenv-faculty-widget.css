@@ -1,0 +1,353 @@
+/*	CoEnv Faculty Widget
+
+		Author: Darin Reid / http://elcontraption.com/
+
+		This is the development SASS stylesheet.
+		Requires Compass.
+		======================================================================== */
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("../../fonts/icomoon.eot");
+  src: url("../../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../../fonts/icomoon.woff") format("woff"), url("../../fonts/icomoon.ttf") format("truetype"), url("../../fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+
+[data-icon]:before {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+
+.icon-faculty-grid-alt-2 {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-faculty-grid-alt-2:before {
+  content: "\e00e";
+}
+
+/*	Useful extensions
+		======================================================================== */
+
+.coenv-fw-antialiased,
+.coenv-fw,
+.coenv-fw.coenv-fw-theme-light {
+  -webkit-font-smoothing: antialiased;
+}
+
+.coenv-fw-clearfix:before,
+.coenv-fw .coenv-fw-feedback:before,
+.coenv-fw .coenv-fw-results:before,
+.coenv-fw-clearfix:after,
+.coenv-fw .coenv-fw-feedback:after,
+.coenv-fw .coenv-fw-results:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.coenv-fw-clearfix:after,
+.coenv-fw .coenv-fw-feedback:after,
+.coenv-fw .coenv-fw-results:after {
+  clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.coenv-fw-clearfix,
+.coenv-fw .coenv-fw-feedback,
+.coenv-fw .coenv-fw-results {
+  *zoom: 1;
+}
+
+.coenv-fw-sans,
+.coenv-fw,
+.coenv-fw .coenv-fw-header h1 a small {
+  font-family: "open-sans", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.coenv-fw-serif,
+.coenv-fw .coenv-fw-header h1 {
+  font-family: "Skolar", Georgia, serif;
+}
+
+/*	The Widget
+		======================================================================== */
+
+.coenv-fw {
+  margin-bottom: 1em;
+  background: #303030;
+  color: #fff;
+}
+
+.coenv-fw .coenv-fw-section {
+  border-top: 1px solid #3d3d3d;
+  border-bottom: 1px solid #222;
+}
+
+.coenv-fw .coenv-fw-section:first-child {
+  border-top: none;
+}
+
+.coenv-fw .coenv-fw-section:last-child {
+  border-bottom: none;
+}
+
+.coenv-fw .coenv-fw-header h1 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 36px;
+  font-weight: 300;
+}
+
+.coenv-fw .coenv-fw-header h1 a {
+  display: block;
+  padding: 16px 16px 8px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.coenv-fw .coenv-fw-header h1 a:hover {
+  color: #fff !important;
+  background: #3B2559;
+}
+
+.coenv-fw .coenv-fw-header h1 a small {
+  display: block;
+  font-size: 11px;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.coenv-fw.coenv-fw-local .coenv-fw-header h1 a {
+  padding: 8px 16px 0;
+  font-size: 24px;
+}
+
+.coenv-fw .coenv-fw-feedback {
+  padding: 8px 16px;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.no-js .coenv-fw .coenv-fw-feedback {
+  display: none;
+}
+
+.coenv-fw .coenv-fw-feedback p {
+  overflow: hidden;
+  margin: 0;
+  color: #aaa;
+}
+
+.coenv-fw .coenv-fw-feedback .coenv-fw-feedback-number {
+  float: left;
+  display: block;
+  margin: 0;
+  padding-right: 8px;
+  font-size: 36px !important;
+  line-height: 30px !important;
+  color: #fff;
+}
+
+.coenv-fw .coenv-fw-feedback a {
+  text-decoration: none;
+  color: #fff !important;
+  font-weight: 400;
+  font-style: italic;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.coenv-fw .coenv-fw-feedback a:hover {
+  text-decoration: underline;
+  color: #fff !important;
+}
+
+.coenv-fw .coenv-fw-results {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member {
+  position: relative;
+  float: left;
+  padding-bottom: 4px;
+  padding-top: 20%;
+  width: 20%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-1 {
+  width: 20%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-2 {
+  width: 40%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-3 {
+  width: 60%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-4 {
+  width: 80%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member.coenv-fw-view-all.coenv-fw-span-5 {
+  width: 100%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
+  background: inherit;
+  color: #fff !important;
+  text-decoration: none;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-image {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 100% !important;
+  border-radius: 0;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner .coenv-fw-member-name {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 15px;
+  font-weight: 600;
+  background: inherit;
+  text-align: left;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover {
+  z-index: 100;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+}
+
+.coenv-fw .coenv-fw-results .coenv-fw-member .coenv-fw-member-inner:hover .coenv-fw-member-name {
+  display: block;
+}
+
+.coenv-fw .coenv-fw-footer {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.coenv-fw .coenv-fw-footer a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.coenv-fw .coenv-fw-footer a:hover {
+  color: #fff !important;
+  background: #3B2559;
+}
+
+.coenv-fw .coenv-fw-footer i {
+  position: relative;
+  top: 1px;
+  display: inline;
+  margin-right: 5px;
+}
+
+/*	Light theme
+		======================================================================== */
+
+.coenv-fw.coenv-fw-theme-light {
+  background: #eee;
+  color: #444;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-section {
+  border-top-color: #fff;
+  border-bottom-color: #ccc;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a {
+  color: #333;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a small {
+  color: #666;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-header h1 a:hover small {
+  color: #fff !important;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback {
+  color: #444 !important;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback p {
+  color: #444 !important;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback .coenv-fw-feedback-number {
+  color: #333 !important;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback a {
+  color: #666 !important;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-feedback a:hover {
+  color: #444 !important;
+}
+
+.coenv-fw.coenv-fw-theme-light .coenv-fw-footer a {
+  color: #444;
+}
