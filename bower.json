@@ -1,6 +1,6 @@
 {
   "name": "CoEnv Faculty Widget",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "author": "Darin Reid / elegant contraption",
   "dependencies": {
     "jquery": "~1.9.1",
