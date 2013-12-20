@@ -11,7 +11,7 @@ $coenv_faculty_widget = new CoEnvFacultyWidget();
 
 // Plugin updates via GitHub
 // https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
-require_once('bower_components/WordPress-GitHub-Plugin-Updater/updater.php');
+require_once('updater.php');
 if ( is_admin() ) {
 	new WP_GitHub_Updater( array(
 		'slug' => plugin_basename(__FILE__),

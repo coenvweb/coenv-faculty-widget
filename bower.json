@@ -5,8 +5,7 @@
   "dependencies": {
     "jquery": "~1.9.1",
     "modernizr": "~2.6.2",
-    "jquery-bridget": "~1.0.0",
-    "WordPress-GitHub-Plugin-Updater": "https://github.com/jkudish/WordPress-GitHub-Plugin-Updater.git#~1.0.3"
+    "jquery-bridget": "~1.0.0"
   },
   "devDependencies": {
     "handlebars.js": "~1.0.12"
