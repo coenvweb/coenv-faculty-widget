@@ -2,7 +2,7 @@
     "name": "CoEnv Faculty Widget",
     "slug": "coenv-faculty-widget",
     "download_url": "https://github.com/elcontraption/coenv-faculty-widget/archive/master.zip",
-    "version": "0.1.3",
+    "version": "0.1.2",
     "author": "Elegant Contraption",
     "sections": {
             "description": "University of Washington College of the Environment Faculty Widget"
