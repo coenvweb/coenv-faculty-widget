@@ -34,10 +34,10 @@ class CoEnvFacultyWidget {
 		// Plugin noncename (for form submission)
 		if ( !defined('COENVFW_NONCENAME') ) define( 'COENVFW_NONCENAME', 'coenvfw' );
 
-		$this->faculty_url = 'http://coenv.washington.edu/staging/faculty/';
-		$this->faculty_endpoint = 'http://coenv.washington.edu/staging/faculty/themes/all/units/all/json';
-		$this->units_endpoint = 'http://coenv.washington.edu/staging/faculty/units/json';
-		$this->themes_endpoint = 'http://coenv.washington.edu/staging/faculty/themes/json';
+		$this->faculty_url = 'http://coenv.washington.edu/faculty/';
+		$this->faculty_endpoint = 'http://coenv.washington.edu/faculty/themes/all/units/all/json';
+		$this->units_endpoint = 'http://coenv.washington.edu/faculty/units/json';
+		$this->themes_endpoint = 'http://coenv.washington.edu/faculty/themes/json';
 
 		// Initialize plugin
 		$this->init();
