@@ -9,15 +9,24 @@ Author: <a href="http://elcontraption.com/">Elegant Contraption</a>
 global $coenv_faculty_widget;
 $coenv_faculty_widget = new CoEnvFacultyWidget();
 
-// http://w-shadow.com/blog/2010/09/02/automatic-updates-for-any-plugin/
-// uses version number above and in wp-plugin.json to determine
-// if a new version is available. Both must be updated, match, and be higher than the previous version.
-require 'plugin-updates/plugin-update-checker.php';
-$update_checker = new PluginUpdateChecker(
-	'https://raw.github.com/coenvweb/coenv-faculty-widget/master/wp-plugin.json',
-	__FILE__,
-	'coenv-faculty-widget'
-);
+// Plugin updates via GitHub
+// https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
+require_once('bower_components/WordPress-GitHub-Plugin-Updater/updater.php');
+if ( is_admin() ) {
+	new WP_GitHub_Updater( array(
+		'slug' => plugin_basename(__FILE__),
+		'proper_folder_name' => 'coenv-faculty-widget',
+		'api_url' => 'https://api.github.com/repos/coenvweb/coenv-faculty-widget',
+		'raw_url' => 'https://raw.github.com/coenvweb/coenv-faculty-widget/master',
+		'github_url' => 'https://github.com/coenvweb/coenv-faculty-widget',
+		'zip_url' => 'https://github.com/coenvweb/coenv-faculty-widget/zipball/master',
+		'sslverify' => true,
+		'requires' => '3.5',
+		'tested' => '3.8',
+		'readme' => 'README.md',
+		'access_token' => ''
+	) );
+}
 
 require 'widget.php';
 

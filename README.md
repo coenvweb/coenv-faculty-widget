@@ -1,4 +1,5 @@
 # CoEnv Faculty Widget
+~Current Version:0.1.2~
 
 A WordPress widget plugin to display College of the Environment faculty filtered by research theme or school/department. Links back to the main [College of the Environment Faculty Directory](http://coenvdev.com/faculty/).
 
