@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
-						'<%= paths.dev %>/components/handlebars.js/dist/handlebars.js',
+						'<%= paths.dev %>/bower_components/handlebars.js/dist/handlebars.js',
 						'<%= paths.dev %>/assets/scripts/src/member.tmpl',
 						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget.js'
 					],

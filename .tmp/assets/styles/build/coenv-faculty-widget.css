@@ -1,10 +1,9 @@
 /*	CoEnv Faculty Widget
 
-		Author: Darin Reid / http://elcontraption.com/
+	Author: Darin Reid / http://elcontraption.com/
 
-		This is the development SASS stylesheet.
-		Requires Compass.
-		======================================================================== */
+	This is the development SASS stylesheet.
+	======================================================================== */
 
 @font-face {
   font-family: 'icomoon';
@@ -51,7 +50,7 @@ you can use the generic selector below, but it's slower:
 }
 
 /*	Useful extensions
-		======================================================================== */
+	======================================================================== */
 
 .coenv-fw-antialiased,
 .coenv-fw,
