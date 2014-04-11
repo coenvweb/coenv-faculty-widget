@@ -13,8 +13,8 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= paths.dev %>/assets/scripts/src/{,*/}*.js',
-				'!<%= paths.dev %>/assets/scripts/src/member.tmpl'
+				'<%= paths.dev %>assets/scripts/src/{,*/}*.js',
+				'!<%= paths.dev %>assets/scripts/src/member.tmpl'
 			]
 		},
 
@@ -27,13 +27,13 @@ module.exports = function(grunt) {
 					sourceMapPrefix: '3'
 				},
 				files: {
-					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget.js': [
-						'<%= paths.dev %>/bower_components/handlebars.js/dist/handlebars.js',
-						'<%= paths.dev %>/assets/scripts/src/member.tmpl',
-						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget.js'
+					'<%= paths.dev %>assets/scripts/build/coenv-faculty-widget.js': [
+						'<%= paths.dev %>bower_components/handlebars.js/dist/handlebars.js',
+						'<%= paths.dev %>assets/scripts/src/member.tmpl',
+						'<%= paths.dev %>assets/scripts/src/coenv-faculty-widget.js'
 					],
-					'<%= paths.dev %>/assets/scripts/build/coenv-faculty-widget-admin.js': [
-						'<%= paths.dev %>/assets/scripts/src/coenv-faculty-widget-admin.js'
+					'<%= paths.dev %>assets/scripts/build/coenv-faculty-widget-admin.js': [
+						'<%= paths.dev %>assets/scripts/src/coenv-faculty-widget-admin.js'
 					]
 				}
 			}
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'<%= paths.dev %>/assets/scripts/src/member.tmpl': '<%= paths.dev %>/assets/scripts/src/member.tmpl.hbs'
+					'<%= paths.dev %>assets/scripts/src/member.tmpl': '<%= paths.dev %>assets/scripts/src/member.tmpl.hbs'
 				}
 			}
 		},

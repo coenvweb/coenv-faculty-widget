@@ -101,11 +101,11 @@ class CoEnvFacultyWidget {
 	function scripts_and_styles() {
 		
 		// styles (enqueued in widget function)
-		wp_register_style( 'coenv-faculty-widget', COENVFW_DIRNAME . '/assets/styles/build/coenv-faculty-widget.css'  );
+		wp_register_style( 'coenv-faculty-widget', COENVFW_DIRNAME . 'assets/styles/build/coenv-faculty-widget.css'  );
 		wp_enqueue_style( 'coenv-faculty-widget' );
 
 		// scripts (enqueued in widget function)
-		wp_register_script( 'coenv-faculty-widget', COENVFW_DIRNAME . '/assets/scripts/build/coenv-faculty-widget.js', array( 'jquery' ), '', true );
+		wp_register_script( 'coenv-faculty-widget', COENVFW_DIRNAME . 'assets/scripts/build/coenv-faculty-widget.js', array( 'jquery' ), '', true );
 
 		// set up plugin js vars
 		wp_localize_script( 'coenv-faculty-widget', 'coenvfw', $this->js_vars() );
@@ -191,6 +191,7 @@ class CoEnvFacultyWidget {
 			$themes = $this->get_themes(array(
 				'themes' => array( $theme )
 			));
+
 			$message .= 'on <a href="' . $themes[0]['url'] . '">' . $themes[0]['name'] . '</a> ';
 		}
 
